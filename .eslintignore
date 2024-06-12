@@ -3,7 +3,6 @@ yarn.lock
 /dist
 rollup.config.mjs
 jest.config.js
-.storybook/main.ts
+
 src/components/ErrorBoundary/errorBoundary.tsx
 *styled.ts
-src/helpers/tests
