@@ -10,7 +10,7 @@
 /build
 /dist
 /storybook-static
-
+.idea
 # misc
 /.vscode
 .DS_Store

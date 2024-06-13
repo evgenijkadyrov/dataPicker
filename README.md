@@ -1,6 +1,3 @@
 # Datepicker
 
-The DatePicker project consists of 
-
-
-
+The DatePicker project consists of
