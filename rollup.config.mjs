@@ -26,7 +26,11 @@ export default [
             typescript({ tsconfig: "./tsconfig.json" }),
             babel({
                 exclude: "node_modules/**",
-                presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
+                presets: [
+                    "@babel/preset-env",
+                    "@babel/preset-typescript",
+                    "@babel/preset-react",
+                ],
                 plugins: ["styled-components"],
             }),
             resolve({
