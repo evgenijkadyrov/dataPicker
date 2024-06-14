@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
 import styles from "rollup-plugin-styles";
 import commonjs from "rollup-plugin-commonjs";
+import scss from "rollup-plugin-scss";
 
 export default [
     {
@@ -23,6 +24,7 @@ export default [
         ],
         plugins: [
             external(),
+            scss({ output: "dist/styles.scss" }),
             typescript({ tsconfig: "./tsconfig.json" }),
             babel({
                 exclude: "node_modules/**",
@@ -31,13 +33,14 @@ export default [
                     "@babel/preset-typescript",
                     "@babel/preset-react",
                 ],
-                plugins: ["styled-components"],
+                plugins: [],
             }),
             resolve({
                 jsnext: true,
                 main: true,
                 browser: true,
             }),
+
             terser(),
             commonjs(),
             styles(),

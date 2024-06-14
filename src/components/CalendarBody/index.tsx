@@ -3,7 +3,7 @@ import { FC } from "react";
 import { SHORT_DAY_NAMES } from "@/constants/constants";
 import { IDate } from "@/constants/currentDate";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface CalendarBodyProps {
     currentDate: Date;
