@@ -11,10 +11,10 @@ interface CalendarBodyProps {
 }
 
 export const CalendarBody: FC = ({ currentDate, renderDayButton }: CalendarBodyProps) => {
-    const monthI: number = currentDate.month as number;
+    const monthI: number = currentDate.getMonth();
     const year: number = currentDate.getFullYear();
-    const daysInMonth: number = new Date<Date>(year, monthI + 1, 0).getDate();
-    const firstDay: number = new Date<Date>(year, monthI, 1).getDay();
+    const daysInMonth: number = new Date(year, monthI + 1, 0).getDate();
+    const firstDay: number = new Date(year, monthI, 1).getDay();
 
     const weekdaysMarkup = SHORT_DAY_NAMES.map((weekday) => (
         <div key={weekday} className="weekday">
