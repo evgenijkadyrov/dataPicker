@@ -4,12 +4,14 @@ import { NextIcon } from "@/components/Icons/NextIcon";
 import { PrevIcon } from "@/components/Icons/PrevIcon";
 import { MONTH_NAMES } from "@/constants/constants";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface CalendarHeaderProps {
+    currentDate: Date;
     monthI: number;
     showPreviousMonth: () => void;
     showNextMonth: () => void;
+    handleChangeYear: (event: ChangeEvent<HTMLSelectElement>) => void;
     handleChangeMonth: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -18,19 +20,41 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
     showPreviousMonth,
     showNextMonth,
     handleChangeMonth,
+    handleChangeYear,
+    currentDate,
 }) => (
     <div className="calendar_header">
         <div className="months">
             <button type="button" className="button" onClick={showPreviousMonth}>
                 <PrevIcon />
             </button>
-            <select className="select_month" value={monthI} onChange={handleChangeMonth}>
-                {MONTH_NAMES.map((monthItem, index) => (
-                    <option key={monthItem} value={index} className="month_text">
-                        {monthItem}
-                    </option>
-                ))}
-            </select>
+            <div className="date-title">
+                <select
+                    className="select_month"
+                    value={monthI}
+                    onChange={handleChangeMonth}>
+                    {MONTH_NAMES.map((monthItem, index) => (
+                        <option key={monthItem} value={index} className="month_text">
+                            {monthItem}
+                        </option>
+                    ))}
+                </select>
+                <select
+                    className="select_month"
+                    value={currentDate.getFullYear()}
+                    onChange={handleChangeYear}>
+                    {Array.from({ length: 25 }, (_, index) => 2024 - index).map(
+                        (yearItem) => (
+                            <option
+                                key={yearItem}
+                                value={yearItem}
+                                className="month_text">
+                                {yearItem}
+                            </option>
+                        )
+                    )}
+                </select>
+            </div>
             <button type="button" className="button" onClick={showNextMonth}>
                 <NextIcon />
             </button>

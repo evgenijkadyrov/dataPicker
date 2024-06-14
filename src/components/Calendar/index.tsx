@@ -6,7 +6,7 @@ import { CalendarHeader } from "@/components/CalendarHeader";
 import { IDate } from "@/constants/currentDate";
 import { compareDate } from "@/helpers/compareDate";
 
-import "./styles.css";
+import "./styles.scss";
 
 // interface ICalendarProps {}
 
@@ -34,6 +34,12 @@ export const Calendar = () => {
             return new Date(prevDate.getFullYear(), selectMonth, 1);
         });
     };
+    const handleChangeYear = (e: ChangeEvent<HTMLSelectElement>) => {
+        setCurrentDate((prevDate) => {
+            const selectYear = +e.target.value;
+            return new Date(selectYear, prevDate.getMonth(), 1);
+        });
+    };
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
         const isSelected = compareDate(date, selectedDate);
@@ -57,10 +63,12 @@ export const Calendar = () => {
     return (
         <div className="calendar">
             <CalendarHeader
+                currentDate={currentDate}
                 monthI={currentDate.getMonth()}
                 showPreviousMonth={showPreviousMonth}
                 showNextMonth={showNextMonth}
                 handleChangeMonth={handleChangeMonth}
+                handleChangeYear={handleChangeYear}
             />
             <CalendarBody currentDate={currentDate} renderDayButton={renderDayButton} />
         </div>
