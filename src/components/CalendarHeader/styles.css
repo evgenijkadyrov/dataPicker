@@ -1,0 +1,41 @@
+.months {
+    width: 224px;
+    height: 29px;
+    padding: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head {
+    display: flex;
+    flex-direction: column;
+}
+
+.select_month {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    color: black;
+    font-family:
+        Open Sans,
+        serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.month_text {
+    width: 110px;
+    color: grey;
+    font-family:
+        Open Sans,
+        serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0;
+    text-align: left;
+}
