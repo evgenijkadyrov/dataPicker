@@ -1,162 +1,68 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import classNames from "classnames";
 
-import { NextIcon } from "@/components/Icons/NextIcon";
-import { PrevIcon } from "@/components/Icons/PrevIcon";
-import { MONTH_NAMES, SHORT_DAY_NAMES } from "@/constants/constants";
-import { useCalendar } from "@/hooks/useCalendar";
+import { CalendarBody } from "@/components/CalendarBody";
+import { CalendarHeader } from "@/components/CalendarHeader";
+import { IDate } from "@/constants/currentDate";
+import { compareDate } from "@/helpers/compareDate";
 
-import "@/components/Calendar/styles.css";
+import "./styles.css";
 
-export interface ICalendarProps {
-    onSelectDate: (date: Date) => void;
-}
+// interface ICalendarProps {}
 
-export interface ISelectedDate {
-    day: number;
-    month: number;
-    year: number;
-}
+export const Calendar = () => {
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState<IDate | null>(null);
 
-export const Calendar = ({ onSelectDate }: ICalendarProps) => {
-    const {
-        currentDate,
+    const showPreviousMonth = () => {
+        setCurrentDate((prevDate) => {
+            const prevMonth = prevDate.getMonth() - 1;
+            return new Date(prevDate.getFullYear(), prevMonth, 1);
+        });
+    };
 
-        showPreviousMonth,
-        showNextMonth,
-    } = useCalendar({ onSelectDate });
+    const showNextMonth = () => {
+        setCurrentDate((prevDate) => {
+            const nextMonth = prevDate.getMonth() + 1;
+            return new Date(prevDate.getFullYear(), nextMonth, 1);
+        });
+    };
 
-    const [selectedDate, setSelectedDate] = useState<ISelectedDate | null>(null);
-    const renderCalendar = () => {
-        const month = currentDate.getMonth();
-        const year = currentDate.getFullYear();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDay = new Date(year, month, 1).getDay();
+    const handleChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
+        setCurrentDate((prevDate) => {
+            const selectMonth = +e.target.value;
+            return new Date(prevDate.getFullYear(), selectMonth, 1);
+        });
+    };
 
-        const handleDateClick = (
-            selectDay: number,
-            selectMonth: number,
-            selectYear: number
-        ) => {
-            setSelectedDate((prevState) => {
-                if (
-                    prevState?.day === selectDay &&
-                    prevState?.month === selectMonth &&
-                    prevState?.year === selectYear
-                ) {
-                    return null;
-                }
-                return { day: selectDay, month: selectMonth, year: selectYear };
-            });
+    const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
+        const isSelected = compareDate(date, selectedDate);
+        const handleDateClick = () => {
+            setSelectedDate((prevState) => (compareDate(prevState, date) ? null : date));
         };
-
-        const weekdaysMarkup = SHORT_DAY_NAMES.map((weekday) => (
-            <div key={weekday} className="weekday">
-                {weekday}
-            </div>
-        ));
-
-        const calendarCells = [];
-        let row = [];
-
-        // Days of the previous month
-        const prevMonth = month === 0 ? 11 : month - 1;
-        const prevYear = month === 0 ? year - 1 : year;
-        const daysInPrevMonth = new Date(prevYear, prevMonth + 1, 0).getDate();
-        for (let i = firstDay - 1; i >= 0; i -= 1) {
-            const day = daysInPrevMonth - i;
-            const isSelected =
-                day === selectedDate?.day && prevMonth === selectedDate.month;
-            row.push(
-                <button
-                    type="button"
-                    key={`prev-${day}`}
-                    className={classNames("day", "button", "prev-month", {
-                        selected: isSelected,
-                    })}
-                    onClick={() => handleDateClick(day, prevMonth, prevYear)}>
-                    {day}
-                </button>
-            );
-        }
-
-        // Days of the current month
-        for (let day = 1; day <= daysInMonth; day += 1) {
-            const isSelected = day === selectedDate?.day && month === selectedDate.month;
-            row.push(
-                <button
-                    type="button"
-                    key={day}
-                    className={classNames("day", "button", { selected: isSelected })}
-                    onClick={() => handleDateClick(day, month, year)}>
-                    {day}
-                </button>
-            );
-            if (row.length === 7) {
-                calendarCells.push(
-                    <div key={`row-${day}`} className="row">
-                        {row}
-                    </div>
-                );
-                row = [];
-            }
-        }
-
-        // Days of the next month
-        const nextMonth = month === 11 ? 0 : month + 1;
-        const nextYear = month === 11 ? year + 1 : year;
-        const remainingCells = 7 - row.length;
-
-        for (let day = 1; day <= remainingCells; day += 1) {
-            const isSelected =
-                day === selectedDate?.day && nextMonth === selectedDate.month;
-            row.push(
-                <button
-                    type="button"
-                    key={`next-${day}`}
-                    className={classNames("day", "button", "next-month", {
-                        selected: isSelected,
-                    })}
-                    onClick={() => handleDateClick(day, nextMonth, nextYear)}>
-                    {day}
-                </button>
-            );
-        }
-
-        // Add the last row of the current month
-        calendarCells.push(
-            <div key="row-last" className="row">
-                {row}
-            </div>
-        );
-
         return (
-            <div className="calendar_wrapper">
-                <div className="calendar_header">
-                    <div className="months">
-                        <button
-                            type="button"
-                            className="button"
-                            onClick={showPreviousMonth}>
-                            <PrevIcon />
-                        </button>
-                        <select className="select_month">
-                            {MONTH_NAMES.map((el) => (
-                                <option key={el} className="month_text">
-                                    {el}
-                                </option>
-                            ))}
-                        </select>
-                        <button type="button" className="button" onClick={showNextMonth}>
-                            <NextIcon />
-                        </button>
-                    </div>
-                </div>
-                <div className="days_week_container">{weekdaysMarkup}</div>
-                <div className="month_body">{calendarCells}</div>
-            </div>
+            <button
+                type="button"
+                key={`${date.month}-${date.day}`}
+                className={classNames("day", "button", {
+                    "day-disabled": !isCurrentMonth,
+                    selected: isSelected,
+                })}
+                onClick={handleDateClick}>
+                {date.day}
+            </button>
         );
     };
 
-    return <div className="calendar">{renderCalendar()}</div>;
+    return (
+        <div className="calendar">
+            <CalendarHeader
+                monthI={currentDate.getMonth()}
+                showPreviousMonth={showPreviousMonth}
+                showNextMonth={showNextMonth}
+                handleChangeMonth={handleChangeMonth}
+            />
+            <CalendarBody currentDate={currentDate} renderDayButton={renderDayButton} />
+        </div>
+    );
 };

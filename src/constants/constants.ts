@@ -27,7 +27,7 @@ export const DAY_NAMES = [
     "Sunday",
 ];
 
-export const SHORT_DAY_NAMES = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+export const SHORT_DAY_NAMES = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export const numbersArray: number[] = [];
 for (let i = 1; i <= 30; i += 1) {
