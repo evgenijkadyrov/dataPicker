@@ -4,30 +4,45 @@ import { NextIcon } from "@/components/Icons/NextIcon";
 import { PrevIcon } from "@/components/Icons/PrevIcon";
 import { MONTH_NAMES } from "@/constants/constants";
 import { CURRENT_DATE } from "@/constants/currentDate";
+import { equalDate } from "@/helpers/equalDate";
+import { formattedDate } from "@/helpers/formattedDate";
 import { getYearNumbers } from "@/helpers/getYearNumber";
 
 import "./styles.scss";
 
-interface CalendarHeaderProps {
+export interface IMinMaxDate {
+    month: number;
+    year: number;
+}
+
+interface ICalendarHeaderProps {
     currentDate: Date;
     monthI: number;
     showPreviousMonth: () => void;
     showNextMonth: () => void;
     handleChangeYear: (event: ChangeEvent<HTMLSelectElement>) => void;
     handleChangeMonth: (event: ChangeEvent<HTMLSelectElement>) => void;
+    minDate: IMinMaxDate | null;
+    maxDate: IMinMaxDate | null;
 }
 
-export const CalendarHeader: FC<CalendarHeaderProps> = ({
+export const CalendarHeader: FC<ICalendarHeaderProps> = ({
     monthI,
     showPreviousMonth,
     showNextMonth,
     handleChangeMonth,
     handleChangeYear,
     currentDate,
+    minDate,
+    maxDate,
 }) => (
     <div className="calendar_header">
         <div className="months">
-            <button type="button" className="button" onClick={showPreviousMonth}>
+            <button
+                type="button"
+                className="button"
+                onClick={showPreviousMonth}
+                disabled={equalDate(minDate, formattedDate(currentDate))}>
                 <PrevIcon />
             </button>
             <div className="date-title">
@@ -52,7 +67,11 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
                     ))}
                 </select>
             </div>
-            <button type="button" className="button" onClick={showNextMonth}>
+            <button
+                type="button"
+                className="button"
+                onClick={showNextMonth}
+                disabled={equalDate(maxDate, formattedDate(currentDate))}>
                 <NextIcon />
             </button>
         </div>
