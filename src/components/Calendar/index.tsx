@@ -2,14 +2,15 @@ import { ChangeEvent, useState } from "react";
 import classNames from "classnames";
 
 import { CalendarBody } from "@/components/CalendarBody";
-import { CalendarHeader } from "@/components/CalendarHeader";
+import { CalendarHeader, IMinMaxDate } from "@/components/CalendarHeader";
 import { IDate } from "@/constants/currentDate";
 import { compareDate } from "@/helpers/compareDate";
 
 import "./styles.scss";
 
 // interface ICalendarProps {}
-
+const minDate: IMinMaxDate | null = null;
+const maxDate: IMinMaxDate | null = null;
 export const Calendar = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState<IDate | null>(null);
@@ -69,6 +70,8 @@ export const Calendar = () => {
                 showNextMonth={showNextMonth}
                 handleChangeMonth={handleChangeMonth}
                 handleChangeYear={handleChangeYear}
+                minDate={minDate}
+                maxDate={maxDate}
             />
             <CalendarBody currentDate={currentDate} renderDayButton={renderDayButton} />
         </div>
