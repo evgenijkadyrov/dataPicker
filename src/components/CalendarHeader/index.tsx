@@ -3,6 +3,8 @@ import { ChangeEvent, FC } from "react";
 import { NextIcon } from "@/components/Icons/NextIcon";
 import { PrevIcon } from "@/components/Icons/PrevIcon";
 import { MONTH_NAMES } from "@/constants/constants";
+import { CURRENT_DATE } from "@/constants/currentDate";
+import { getYearNumbers } from "@/helpers/getYearNumber";
 
 import "./styles.scss";
 
@@ -43,16 +45,11 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
                     className="select_month"
                     value={currentDate.getFullYear()}
                     onChange={handleChangeYear}>
-                    {Array.from({ length: 25 }, (_, index) => 2024 - index).map(
-                        (yearItem) => (
-                            <option
-                                key={yearItem}
-                                value={yearItem}
-                                className="month_text">
-                                {yearItem}
-                            </option>
-                        )
-                    )}
+                    {getYearNumbers(CURRENT_DATE.year).map((yearItem) => (
+                        <option key={yearItem} value={yearItem} className="month_text">
+                            {yearItem}
+                        </option>
+                    ))}
                 </select>
             </div>
             <button type="button" className="button" onClick={showNextMonth}>

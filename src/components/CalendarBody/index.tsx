@@ -1,22 +1,28 @@
 import { FC } from "react";
 
-import { SHORT_DAY_NAMES } from "@/constants/constants";
+import { StartDayOfWeek } from "@/constants/constants";
 import { IDate } from "@/constants/currentDate";
+import { calculateFirstDay } from "@/helpers/calculateFirstDay";
+import { getStartDayOfWeek } from "@/helpers/getStartDayOfWeek";
 
 import "./styles.scss";
 
 interface CalendarBodyProps {
     currentDate: Date;
     renderDayButton: (date: IDate, isCurrentMonth: boolean) => Element;
+    startDayOfWeek: StartDayOfWeek;
 }
 
-export const CalendarBody: FC = ({ currentDate, renderDayButton }: CalendarBodyProps) => {
+export const CalendarBody: FC = ({
+    currentDate,
+    renderDayButton,
+    startDayOfWeek = "Monday",
+}: CalendarBodyProps) => {
     const monthI: number = currentDate.getMonth();
     const year: number = currentDate.getFullYear();
     const daysInMonth: number = new Date(year, monthI + 1, 0).getDate();
-    const firstDay: number = new Date(year, monthI, 1).getDay();
-
-    const weekdaysMarkup = SHORT_DAY_NAMES.map((weekday) => (
+    const firstDay: number = calculateFirstDay(startDayOfWeek, year, monthI);
+    const weekdaysMarkup = getStartDayOfWeek(startDayOfWeek).map((weekday) => (
         <div key={weekday} className="weekday">
             {weekday}
         </div>
@@ -25,7 +31,6 @@ export const CalendarBody: FC = ({ currentDate, renderDayButton }: CalendarBodyP
     const calendarCells = [];
     let row = [];
 
-    // Days of the previous month
     const prevMonth: number = monthI === 0 ? 11 : monthI - 1;
     const prevYear: number = monthI === 0 ? year - 1 : year;
     const daysInPrevMonth: number = new Date(prevYear, prevMonth, 0).getDate();
@@ -36,7 +41,6 @@ export const CalendarBody: FC = ({ currentDate, renderDayButton }: CalendarBodyP
         row.push(renderDayButton(prevDate, false));
     }
 
-    // Days of the current month
     for (let day = 1; day <= daysInMonth; day += 1) {
         const currentMonthDate: IDate = { day, month: monthI, year };
         row.push(renderDayButton(currentMonthDate, true));
