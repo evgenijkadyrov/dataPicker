@@ -1,52 +1,101 @@
-import { ChangeEvent, useState } from "react";
+import {
+    ChangeEvent,
+    Dispatch,
+    ReactElement,
+    SetStateAction,
+    SyntheticEvent,
+} from "react";
 import classNames from "classnames";
 
 import { CalendarBody } from "@/components/CalendarBody";
 import { CalendarHeader, IMinMaxDate } from "@/components/CalendarHeader";
-import { IDate } from "@/constants/currentDate";
+import {
+    defaultMaxDate,
+    defaultMinDate,
+    IHolidayDate,
+    StartDayOfWeek,
+} from "@/constants/constants";
+import { CURRENT_DATE } from "@/constants/currentDate";
+import { calculateIsDayHoliday } from "@/helpers/calculateHolidaysDay";
+import { calculateWeekendDay } from "@/helpers/calculateWeekendDay";
 import { compareDate } from "@/helpers/compareDate";
+import { calculateDayHaveTodo } from "@/helpers/isDayHaveTodo";
+import { IDate, ISelectedDate } from "@/interfaces/interfaces";
 
 import "./styles.scss";
 
-// interface ICalendarProps {}
-const minDate: IMinMaxDate | null = null;
-const maxDate: IMinMaxDate | null = null;
-export const Calendar = () => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState<IDate | null>(null);
+export interface ICalendarProps {
+    startDayOfWeek?: StartDayOfWeek | undefined;
+    renderPicker?: () => ReactElement;
+    renderTodolist?: () => ReactElement;
+    holidays?: IHolidayDate[];
+    showHolidays?: boolean | undefined;
+    showWeekends?: boolean | undefined;
+    selectedDate: ISelectedDate;
+    maxDate: IMinMaxDate;
+    minDate: IMinMaxDate;
+    handleDayClick?: (e: SyntheticEvent) => void;
+    showDaysWithTask?: boolean | undefined;
+    setShownDate?: Dispatch<SetStateAction<IDate>>;
+    shownDate: IDate;
+}
 
+export const Calendar = ({
+    startDayOfWeek = StartDayOfWeek.Monday,
+    renderPicker,
+    holidays,
+    showHolidays,
+    showWeekends,
+    renderTodolist,
+    handleDayClick,
+    selectedDate,
+    showDaysWithTask,
+    shownDate = CURRENT_DATE,
+    setShownDate,
+    minDate = defaultMinDate,
+    maxDate = defaultMaxDate,
+}: ICalendarProps) => {
     const showPreviousMonth = () => {
-        setCurrentDate((prevDate) => {
-            const prevMonth = prevDate.getMonth() - 1;
-            return new Date(prevDate.getFullYear(), prevMonth, 1);
-        });
+        if (setShownDate) {
+            setShownDate((prevDate: IDate) => {
+                const prevMonth = prevDate.month - 1;
+                return { year: prevDate.year, month: prevMonth, day: 1 };
+            });
+        }
     };
-
     const showNextMonth = () => {
-        setCurrentDate((prevDate) => {
-            const nextMonth = prevDate.getMonth() + 1;
-            return new Date(prevDate.getFullYear(), nextMonth, 1);
-        });
+        if (setShownDate) {
+            setShownDate((prevDate: IDate) => {
+                const prevMonth = prevDate.month + 1;
+                return { year: prevDate.year, month: prevMonth, day: 1 };
+            });
+        }
     };
 
     const handleChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
-        setCurrentDate((prevDate) => {
-            const selectMonth = +e.target.value;
-            return new Date(prevDate.getFullYear(), selectMonth, 1);
-        });
+        if (setShownDate) {
+            setShownDate((prevDate: IDate) => {
+                const selectMonth = +e.target.value;
+                return { year: prevDate.year, month: selectMonth, day: 1 };
+            });
+        }
     };
+
     const handleChangeYear = (e: ChangeEvent<HTMLSelectElement>) => {
-        setCurrentDate((prevDate) => {
-            const selectYear = +e.target.value;
-            return new Date(selectYear, prevDate.getMonth(), 1);
-        });
+        if (setShownDate) {
+            setShownDate((prevDate: IDate) => {
+                const selectYear = +e.target.value;
+                return { year: selectYear, month: prevDate.month, day: 1 };
+            });
+        }
     };
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
+        const isWeekendDay = showWeekends && calculateWeekendDay(date);
         const isSelected = compareDate(date, selectedDate);
-        const handleDateClick = () => {
-            setSelectedDate((prevState) => (compareDate(prevState, date) ? null : date));
-        };
+        const isHoliday = showHolidays && calculateIsDayHoliday(date, holidays);
+        const isHaveTodo = showDaysWithTask && calculateDayHaveTodo(date);
+
         return (
             <button
                 type="button"
@@ -54,8 +103,11 @@ export const Calendar = () => {
                 className={classNames("day", "button", {
                     "day-disabled": !isCurrentMonth,
                     selected: isSelected,
+                    isHoliday,
+                    isWeekendDay,
+                    isHaveTodo,
                 })}
-                onClick={handleDateClick}>
+                onClick={handleDayClick}>
                 {date.day}
             </button>
         );
@@ -63,9 +115,10 @@ export const Calendar = () => {
 
     return (
         <div className="calendar">
+            {renderPicker && renderPicker()}
             <CalendarHeader
-                currentDate={currentDate}
-                monthI={currentDate.getMonth()}
+                currentDate={shownDate}
+                // monthI={shownDate.month}
                 showPreviousMonth={showPreviousMonth}
                 showNextMonth={showNextMonth}
                 handleChangeMonth={handleChangeMonth}
@@ -73,7 +126,12 @@ export const Calendar = () => {
                 minDate={minDate}
                 maxDate={maxDate}
             />
-            <CalendarBody currentDate={currentDate} renderDayButton={renderDayButton} />
+            <CalendarBody
+                currentDate={shownDate}
+                renderDayButton={renderDayButton}
+                startDayOfWeek={startDayOfWeek}
+            />
+            {renderTodolist && renderTodolist()}
         </div>
     );
 };

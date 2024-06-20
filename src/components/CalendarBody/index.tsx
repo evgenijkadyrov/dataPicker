@@ -1,25 +1,26 @@
 import { FC } from "react";
 
 import { StartDayOfWeek } from "@/constants/constants";
-import { IDate } from "@/constants/currentDate";
+import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateFirstDay } from "@/helpers/calculateFirstDay";
 import { getStartDayOfWeek } from "@/helpers/getStartDayOfWeek";
+import { IDate } from "@/interfaces/interfaces";
 
 import "./styles.scss";
 
-interface CalendarBodyProps {
-    currentDate: Date;
+interface ICalendarBodyProps {
+    currentDate: IDate;
     renderDayButton: (date: IDate, isCurrentMonth: boolean) => Element;
     startDayOfWeek: StartDayOfWeek;
 }
 
 export const CalendarBody: FC = ({
-    currentDate,
+    currentDate = CURRENT_DATE,
     renderDayButton,
-    startDayOfWeek = "Monday",
-}: CalendarBodyProps) => {
-    const monthI: number = currentDate.getMonth();
-    const year: number = currentDate.getFullYear();
+    startDayOfWeek,
+}: ICalendarBodyProps) => {
+    const monthI: number = currentDate?.month;
+    const { year } = currentDate;
     const daysInMonth: number = new Date(year, monthI + 1, 0).getDate();
     const firstDay: number = calculateFirstDay(startDayOfWeek, year, monthI);
     const weekdaysMarkup = getStartDayOfWeek(startDayOfWeek).map((weekday) => (
@@ -33,8 +34,7 @@ export const CalendarBody: FC = ({
 
     const prevMonth: number = monthI === 0 ? 11 : monthI - 1;
     const prevYear: number = monthI === 0 ? year - 1 : year;
-    const daysInPrevMonth: number = new Date(prevYear, prevMonth, 0).getDate();
-
+    const daysInPrevMonth: number = new Date(prevYear, prevMonth + 1, 0).getDate();
     for (let i = firstDay - 1; i >= 0; i -= 1) {
         const day = daysInPrevMonth - i;
         const prevDate = { day, month: prevMonth, year: prevYear };

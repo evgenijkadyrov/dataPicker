@@ -5,8 +5,8 @@ import { PrevIcon } from "@/components/Icons/PrevIcon";
 import { MONTH_NAMES } from "@/constants/constants";
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { equalDate } from "@/helpers/equalDate";
-import { formattedDate } from "@/helpers/formattedDate";
 import { getYearNumbers } from "@/helpers/getYearNumber";
+import { IDate } from "@/interfaces/interfaces";
 
 import "./styles.scss";
 
@@ -16,18 +16,18 @@ export interface IMinMaxDate {
 }
 
 interface ICalendarHeaderProps {
-    currentDate: Date;
-    monthI: number;
+    currentDate: IDate;
+
     showPreviousMonth: () => void;
     showNextMonth: () => void;
     handleChangeYear: (event: ChangeEvent<HTMLSelectElement>) => void;
     handleChangeMonth: (event: ChangeEvent<HTMLSelectElement>) => void;
-    minDate: IMinMaxDate | null;
-    maxDate: IMinMaxDate | null;
+    minDate: IMinMaxDate;
+    maxDate: IMinMaxDate;
 }
 
 export const CalendarHeader: FC<ICalendarHeaderProps> = ({
-    monthI,
+    // monthI,
     showPreviousMonth,
     showNextMonth,
     handleChangeMonth,
@@ -42,13 +42,13 @@ export const CalendarHeader: FC<ICalendarHeaderProps> = ({
                 type="button"
                 className="button"
                 onClick={showPreviousMonth}
-                disabled={equalDate(minDate, formattedDate(currentDate))}>
+                disabled={equalDate(minDate, currentDate)}>
                 <PrevIcon />
             </button>
             <div className="date-title">
                 <select
                     className="select_month"
-                    value={monthI}
+                    value={currentDate.month}
                     onChange={handleChangeMonth}>
                     {MONTH_NAMES.map((monthItem, index) => (
                         <option key={monthItem} value={index} className="month_text">
@@ -58,7 +58,7 @@ export const CalendarHeader: FC<ICalendarHeaderProps> = ({
                 </select>
                 <select
                     className="select_month"
-                    value={currentDate.getFullYear()}
+                    value={currentDate.year}
                     onChange={handleChangeYear}>
                     {getYearNumbers(CURRENT_DATE.year).map((yearItem) => (
                         <option key={yearItem} value={yearItem} className="month_text">
@@ -71,7 +71,7 @@ export const CalendarHeader: FC<ICalendarHeaderProps> = ({
                 type="button"
                 className="button"
                 onClick={showNextMonth}
-                disabled={equalDate(maxDate, formattedDate(currentDate))}>
+                disabled={equalDate(maxDate, currentDate)}>
                 <NextIcon />
             </button>
         </div>

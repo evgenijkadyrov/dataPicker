@@ -1,0 +1,21 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 5px 0 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+button {
+    margin-top: 4px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}

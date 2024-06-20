@@ -1,8 +1,5 @@
-export interface IDate {
-    day: number;
-    month: number;
-    year: number;
-}
+import { IDate } from "@/interfaces/interfaces";
+
 export const CURRENT_DATE: IDate = {
     day: new Date().getDate(),
     month: new Date().getMonth(),
