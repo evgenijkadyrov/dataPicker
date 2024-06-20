@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.calendarIconWrapper {
+    position: absolute;
+    height: 16px;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+}
+
+.clearIconWrapper {
+    position: absolute;
+    height: 16px;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.styledInput {
+    width: 75%;
+    padding: 2px 25px;
+    font: inherit;
+    outline: none;
+    color: black;
+
+    &:invalid {
+        border-color: red;
+    }
+}

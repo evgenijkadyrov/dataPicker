@@ -4,6 +4,7 @@ import { Calendar } from "@/components/Calendar";
 
 const meta: Meta<typeof Calendar> = {
     component: Calendar,
+    tags: ["autodocs"],
 };
 
 export default meta;

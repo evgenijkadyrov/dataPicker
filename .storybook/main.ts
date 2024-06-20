@@ -4,9 +4,19 @@ import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import * as path from "path";
 
 const config: any = {
+    stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+
+    addons: [
+        "@storybook/addon-links",
+        "@storybook/addon-essentials",
+        "@storybook/addon-onboarding",
+        "@storybook/addon-interactions",
+        "@storybook/addon-webpack5-compiler-babel",
+        "@chromatic-com/storybook",
+    ],
+
     framework: "@storybook/react-webpack5",
 
-    stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
     webpackFinal: async (config) => {
         if (config.resolve) {
             config.resolve.plugins = [
@@ -24,6 +34,10 @@ const config: any = {
             });
             return config;
         }
+    },
+    docs: {},
+    typescript: {
+        reactDocgen: "react-docgen-typescript",
     },
 };
 

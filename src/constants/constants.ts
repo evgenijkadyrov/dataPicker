@@ -1,3 +1,5 @@
+import { IMinMaxDate } from "@/components/CalendarHeader";
+
 export const MONTH_NAMES = [
     "January",
     "February",
@@ -33,3 +35,21 @@ export const numbersArray: number[] = [];
 for (let i = 1; i <= 30; i += 1) {
     numbersArray.push(i);
 }
+
+export interface IHolidayDate {
+    month: number;
+    day: number;
+}
+export const HOLIDAYS_IN_BELARUS = [
+    { month: 1, day: 1 },
+    { month: 1, day: 7 },
+    { month: 3, day: 8 },
+    { month: 4, day: 25 },
+    { month: 5, day: 1 },
+    { month: 5, day: 9 },
+    { month: 7, day: 3 },
+    { month: 11, day: 7 },
+    { month: 12, day: 25 },
+];
+export const defaultMinDate: IMinMaxDate = { year: 2020, month: 1 };
+export const defaultMaxDate: IMinMaxDate = { year: 2025, month: 11 };
