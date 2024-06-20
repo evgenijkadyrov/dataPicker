@@ -17,6 +17,7 @@ import {
 } from "@/constants/constants";
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateIsDayHoliday } from "@/helpers/calculateHolidaysDay";
+import { isDateInRange } from "@/helpers/calculateRangeDay";
 import { calculateWeekendDay } from "@/helpers/calculateWeekendDay";
 import { compareDate } from "@/helpers/compareDate";
 import { calculateDayHaveTodo } from "@/helpers/isDayHaveTodo";
@@ -38,6 +39,8 @@ export interface ICalendarProps {
     showDaysWithTask?: boolean | undefined;
     setShownDate?: Dispatch<SetStateAction<IDate>>;
     shownDate: IDate;
+    startDate?: IDate;
+    endDate?: IDate;
 }
 
 export const Calendar = ({
@@ -54,6 +57,8 @@ export const Calendar = ({
     setShownDate,
     minDate = defaultMinDate,
     maxDate = defaultMaxDate,
+    startDate,
+    endDate,
 }: ICalendarProps) => {
     const showPreviousMonth = () => {
         if (setShownDate) {
@@ -95,7 +100,9 @@ export const Calendar = ({
         const isSelected = compareDate(date, selectedDate);
         const isHoliday = showHolidays && calculateIsDayHoliday(date, holidays);
         const isHaveTodo = showDaysWithTask && calculateDayHaveTodo(date);
-
+        const isStartDate = compareDate(date, startDate);
+        const isEndDate = compareDate(date, endDate);
+        const isRange = isDateInRange(date, startDate, endDate);
         return (
             <button
                 type="button"
@@ -106,6 +113,9 @@ export const Calendar = ({
                     isHoliday,
                     isWeekendDay,
                     isHaveTodo,
+                    isStartDate,
+                    isEndDate,
+                    isRange,
                 })}
                 onClick={handleDayClick}>
                 {date.day}
