@@ -1,5 +1,4 @@
-import { IMinMaxDate } from "@/components/CalendarHeader";
-import { IDate } from "@/interfaces/interfaces";
+import { IDate, IMinMaxDate } from "@/interfaces/interfaces";
 
 export const equalDate = (date1: IMinMaxDate, date2: IDate) => {
     if (!date1 || !date2) return false;

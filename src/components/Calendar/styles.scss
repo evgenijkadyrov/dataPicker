@@ -1,11 +1,13 @@
-.calendar {
-    width: 224px;
-    height: auto;
-    padding: 15px;
+@import "@/styles/styles.scss";
 
-    box-shadow: 0 0 5px grey;
-    background-color: white;
-    border-radius: 8px;
+.calendar {
+    width: $width-m;
+    height: auto;
+    padding: $size-xl;
+
+    box-shadow: 0 0 $size-s $grey;
+    background-color: $white;
+    border-radius: $border-radius-l;
 }
 
 .button {
@@ -14,83 +16,90 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
+
     &:hover {
-        border-radius: 8px;
-        background: rgb(241, 241, 241);
+        border-radius: $border-radius-l;
+        background: $background-light;
     }
 }
 
 .days_week_container {
-    width: 224px;
-    height: 32px;
+    width: $width-m;
+    height: $height-l;
     display: flex;
     justify-content: space-between;
 }
 
 .day_week {
-    color: rgb(51, 51, 51);
+    color: $dark-grey;
     font-family:
         Open Sans,
         serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 19px;
+    font-size: $font-size-m;
+    font-weight: $font-weight-bold;
+    line-height: $font-size-xl;
     letter-spacing: 0;
     text-align: left;
 }
 
 .days_months_container {
-    width: 224px;
-    height: 32px;
+    width: $width-m;
+    height: $height-l;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .day_number {
-    width: 32px;
-    height: 32px;
-    color: rgb(51, 51, 51);
+    width: $width-day-s;
+    height: $height-day-s;
+    color: $dark-grey;
     font-family:
         Open Sans,
         serif;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-large;
+    line-height: $font-size-xl;
     letter-spacing: 0;
     text-align: left;
 }
 
 .selected {
-    border-radius: 8px;
-    background: rgb(47, 128, 237);
-    color: rgb(255, 255, 255);
+    border-radius: $border-radius-l;
+    background: $background-blue;
+    color: $white;
 }
+
 .isHoliday {
-    color: red;
+    color: $day-red;
 }
 
 .isWeekends {
-    color: red;
+    color: $day-red;
 }
-.isHaveTodo {
-    border: 1px solid #2f80ed;
-    border-radius: 8px;
-}
-.isCurrentDay {
-    background: rgba(47, 128, 237, 0.62);
-    border-radius: 8px;
-}
-.isStartDate {
-    border-radius: 8px 0 0 8px;
-    background: rgba(47, 128, 237, 0.6);
-}
-.isEndDate {
-    border-radius: 0 8px 8px 0;
 
-    background: rgb(47, 128, 237);
+.isHaveTodo {
+    border: $border-s solid $background-blue;
+    border-radius: $border-radius-l;
 }
+
+.isCurrentDay {
+    background: $day-current;
+    border-radius: $border-radius-l;
+}
+
+.isStartDate {
+    border-radius: $border-radius-l 0 0 $border-radius-l;
+    background: $day-start;
+}
+
+.isEndDate {
+    border-radius: 0 $border-radius-l $border-radius-l 0;
+
+    background: $day-end;
+}
+
 .isRange {
-    background: rgba(47, 128, 237, 0.1);
-    color: #2f80ed;
+    background: $day-in-range;
+    color: $blue;
 }

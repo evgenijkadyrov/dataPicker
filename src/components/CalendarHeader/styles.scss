@@ -1,7 +1,20 @@
+@import "@/styles/styles.scss";
+
+@mixin commonStyle {
+    font-family:
+        Open Sans,
+        serif;
+    font-size: $font-size-m;
+    font-weight: $font-weight-bold;
+    line-height: $font-size-xxl;
+    letter-spacing: 0;
+    padding: $size-s;
+}
+
 .months {
-    width: 224px;
-    height: 29px;
-    padding: 5px 0 5px 0;
+    width: $width-m;
+    height: $height-day-s;
+    padding: $size-s 0 $size-s 0;
     display: flex;
     justify-content: space-between;
 }
@@ -13,33 +26,25 @@
 
 .date-title {
     display: flex;
-
     justify-content: center;
 }
 
 .select_month {
-    text-align: center;
+    @include commonStyle;
+    text-align: left;
     appearance: none;
     background: none;
     border: none;
     outline: none;
-    color: black;
-    font-family:
-        Open Sans,
-        serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 19px;
-    letter-spacing: 0;
+    color: $black;
 }
 
 .month_text {
-    color: grey;
-    font-family:
-        Open Sans,
-        serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 19px;
-    letter-spacing: 0;
+    @include commonStyle;
+    color: $grey;
+    height: $height-day-xl;
+}
+
+.select_month:focus option {
+    height: $height-day-xl;
 }
