@@ -30,15 +30,13 @@ export const RangeCalendar = memo<IProps>(
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] =
             useState<ISelectedDate>(initialSelectedDate);
-        const CalendarWithMainLogic = useMemo(() => withHolidays(Calendar), [shownDate]);
-
+        const CalendarWithHolidays = useMemo(() => withHolidays(Calendar), [shownDate]);
         const CalendarWithRange = withRangeLogic(
-            CalendarWithMainLogic,
+            CalendarWithHolidays,
             selectedDate,
             setSelectedDate,
             shownDate,
-            setShownDate,
-            showWeekends
+            setShownDate
         );
 
         return (

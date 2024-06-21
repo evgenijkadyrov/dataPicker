@@ -10,3 +10,5 @@ export * from "./TodoListBlock/index";
 export { ICalendarProps } from "@/components/Calendar/calendar.interface";
 export { ICalendarBodyProps } from "@/components/CalendarBody/calendarBody.interface";
 export { ICalendarHeaderProps } from "@/components/CalendarHeader/calendarHeader.interface";
+export { initialShownDate } from "@/components/DatePicker/datePicker.interfaces";
+export { initialSelectedDate } from "@/components/DatePicker/datePicker.interfaces";

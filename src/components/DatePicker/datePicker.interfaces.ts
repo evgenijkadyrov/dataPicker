@@ -1,13 +1,23 @@
+import { CURRENT_DATE } from "@/constants";
 import { StartDayOfWeek } from "@/constants/constants";
-import { IMinMaxDate } from "@/interfaces";
+import { IDate, IMinMaxDate, ISelectedDate } from "@/interfaces";
 
 export interface IProps {
     startDayOfWeek?: StartDayOfWeek | undefined;
     maxDate: IMinMaxDate;
     minDate: IMinMaxDate;
     color?: string;
-    showHolidays?: boolean | undefined;
-    showWeekends?: boolean | undefined;
-    showDaysWithTask?: boolean | undefined;
-    onChange?: (value: string | undefined) => void;
+    showHolidays?: boolean;
+    showWeekends?: boolean;
+    showDaysWithTask?: boolean;
+    onChange?: (value: string) => void;
 }
+
+export const initialSelectedDate: ISelectedDate = {
+    month: undefined,
+    year: undefined,
+    day: undefined,
+};
+export const initialShownDate: IDate = {
+    ...CURRENT_DATE,
+};

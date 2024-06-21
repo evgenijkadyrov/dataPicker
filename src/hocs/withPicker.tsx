@@ -20,9 +20,7 @@ export function withPickerLogic<T>(
     selectedDate: ISelectedDate,
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
-    setShownDate: Dispatch<SetStateAction<IDate>>,
-    showWeekends?: boolean | undefined,
-    onChange?: (value: string | undefined) => void
+    setShownDate: Dispatch<SetStateAction<IDate>>
 ) {
     return (
         hocProps: Omit<
@@ -33,10 +31,6 @@ export function withPickerLogic<T>(
         const [dateString, setDateString] = useState<string>(
             formatDateToString(selectedDate)
         );
-
-        if (onChange) {
-            onChange(dateString);
-        }
 
         const handleInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
@@ -95,9 +89,7 @@ export function withPickerLogic<T>(
                 setSelectedDate={setSelectedDate}
                 handleDayClick={handleDayClick}
                 renderPicker={renderPicker}
-                shownDate={shownDate}
                 setShownDate={setShownDate}
-                showWeekends={showWeekends}
             />
         );
     };
