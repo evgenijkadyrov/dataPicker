@@ -1,6 +1,15 @@
-import { ComponentType, Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+    ComponentType,
+    Dispatch,
+    ReactElement,
+    SetStateAction,
+    SyntheticEvent,
+    useState,
+} from "react";
 
 import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+
+import "@/components/RangeCalendar/styles.scss";
 
 export function withRangeLogic<T>(
     Component: ComponentType<T>,
@@ -21,31 +30,44 @@ export function withRangeLogic<T>(
 
         const handleDayClick = (e: SyntheticEvent): void => {
             const target = e.target as HTMLElement;
+            const selectDate = {
+                year: shownDate.year,
+                month: shownDate.month,
+                day: parseInt(target.innerText, 10),
+            };
             if (!startDate) {
-                setStartDate({
-                    year: shownDate.year,
-                    month: shownDate.month,
-                    day: parseInt(target.innerText, 10),
-                });
-            } else if (!endDate) {
-                setEndDate({
-                    year: shownDate.year,
-                    month: shownDate.month,
-                    day: parseInt(target.innerText, 10),
-                });
+                setStartDate(selectDate);
+            } else if (!endDate && selectDate.day > startDate.day) {
+                setEndDate(selectDate);
             }
             if (endDate) {
                 setStartDate(undefined);
                 setEndDate(undefined);
             }
         };
-
+        const handleClearDate = (): void => {
+            setStartDate(undefined);
+            setEndDate(undefined);
+        };
+        const renderClear = (): ReactElement => (
+            <div>
+                {startDate && (
+                    <button
+                        className="clearButton"
+                        type="button"
+                        onClick={handleClearDate}>
+                        Clear
+                    </button>
+                )}
+            </div>
+        );
         return (
             <Component
                 {...(hocProps as T)}
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
                 handleDayClick={handleDayClick}
+                renderClear={renderClear()}
                 startDate={startDate}
                 endDate={endDate}
                 shownDate={shownDate}

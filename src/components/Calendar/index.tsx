@@ -38,6 +38,7 @@ export const Calendar = ({
     maxDate = DEFAULT_MAX_DATE,
     startDate,
     endDate,
+    renderClear,
 }: ICalendarProps) => {
     const showPreviousMonth = () => {
         if (setShownDate) {
@@ -116,6 +117,7 @@ export const Calendar = ({
                 renderDayButton={renderDayButton}
                 startDayOfWeek={startDayOfWeek}
             />
+            {renderClear && renderClear}
             {renderTodolist && renderTodolist()}
         </div>
     );

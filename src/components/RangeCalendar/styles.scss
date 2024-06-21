@@ -1,0 +1,15 @@
+@import "@/styles/styles.scss";
+.clearButton {
+    width: 100%;
+    height: $height-s;
+    border-radius: $border-radius-s;
+    font-family: Open Sans serif;
+    font-size: $font-size-s;
+    font-weight: $font-weight-large;
+    line-height: $font-size-l;
+    letter-spacing: 0;
+    color: $black;
+    &:hover {
+        background-color: $background-light;
+    }
+}

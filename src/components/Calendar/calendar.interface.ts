@@ -7,6 +7,7 @@ export interface ICalendarProps {
     startDayOfWeek?: StartDayOfWeek | undefined;
     renderPicker?: () => ReactElement;
     renderTodolist?: () => ReactElement;
+    renderClear?: () => ReactElement;
     holidays?: IHolidayDate[];
     showHolidays?: boolean | undefined;
     showWeekends?: boolean | undefined;
