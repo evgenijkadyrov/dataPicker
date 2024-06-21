@@ -27,7 +27,6 @@ interface ICalendarHeaderProps {
 }
 
 export const CalendarHeader: FC<ICalendarHeaderProps> = ({
-    // monthI,
     showPreviousMonth,
     showNextMonth,
     handleChangeMonth,

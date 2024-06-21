@@ -1,4 +1,5 @@
 ul {
+    width: 224px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -10,7 +11,8 @@ ul {
 li {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 5px;
 }
 button {
     margin-top: 4px;
