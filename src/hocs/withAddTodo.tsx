@@ -25,9 +25,7 @@ export function withAddTodolist<T>(
     selectedDate: ISelectedDate,
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
-    setShownDate: (value: IDate) => void,
-    showWeekends?: boolean | undefined,
-    showDaysWithTask?: boolean | undefined
+    setShownDate: (value: IDate) => void
 ) {
     return (
         hocProps: Omit<
@@ -106,8 +104,6 @@ export function withAddTodolist<T>(
                 shownDate={shownDate}
                 todoList={todoList}
                 setShownDate={setShownDate}
-                showWeekends={showWeekends}
-                showDaysWithTask={showDaysWithTask}
             />
         );
     };

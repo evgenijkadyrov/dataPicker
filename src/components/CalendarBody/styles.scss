@@ -1,5 +1,6 @@
 @import "@/styles/styles.scss";
 @import "@/components/CalendarHeader/styles.scss";
+
 .weekday {
     @include commonStyle;
     width: $width-day-s;
@@ -51,5 +52,8 @@
     color: $day-red;
 }
 .isWeekendDay {
+    color: $day-red;
+}
+.isHoliday {
     color: $day-red;
 }

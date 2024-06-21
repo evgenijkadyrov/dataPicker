@@ -80,6 +80,7 @@ export const Calendar = ({
         const isStartDate = compareDate(date, startDate);
         const isEndDate = compareDate(date, endDate);
         const isRange = isDateInRange(date, startDate, endDate);
+
         const { month, day } = date;
         return (
             <button

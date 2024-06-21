@@ -16,8 +16,7 @@ export function withRangeLogic<T>(
     selectedDate: ISelectedDate,
     setSelectedDate: Dispatch<SetStateAction<ISelectedDate>>,
     shownDate: IDate,
-    setShownDate: Dispatch<SetStateAction<IDate>>,
-    showWeekends?: boolean | undefined
+    setShownDate: Dispatch<SetStateAction<IDate>>
 ) {
     return (
         hocProps: Omit<
@@ -27,7 +26,6 @@ export function withRangeLogic<T>(
     ) => {
         const [startDate, setStartDate] = useState<ISelectedDate>();
         const [endDate, setEndDate] = useState<ISelectedDate>();
-
         const handleDayClick = (e: SyntheticEvent): void => {
             const target = e.target as HTMLElement;
             const selectDate = {
@@ -70,9 +68,7 @@ export function withRangeLogic<T>(
                 renderClear={renderClear()}
                 startDate={startDate}
                 endDate={endDate}
-                shownDate={shownDate}
                 setShownDate={setShownDate}
-                showWeekends={showWeekends}
             />
         );
     };

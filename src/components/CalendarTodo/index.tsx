@@ -22,16 +22,14 @@ export const CalendarTodo = memo<ICalendarProps>(
     }) => {
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] = useState<ISelectedDate>(initialShownDate);
-        const CalendarWithMainLogic = useMemo(() => withHolidays(Calendar), [shownDate]);
+        const CalendarWithHolidays = useMemo(() => withHolidays(Calendar), [shownDate]);
 
         const CalendarWithTodo = withAddTodolist(
-            CalendarWithMainLogic,
+            CalendarWithHolidays,
             selectedDate,
             setSelectedDate,
             shownDate,
-            setShownDate,
-            showWeekends,
-            showDaysWithTask
+            setShownDate
         );
 
         return (

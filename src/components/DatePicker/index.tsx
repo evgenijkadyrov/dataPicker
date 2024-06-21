@@ -1,23 +1,11 @@
 import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
-import { StartDayOfWeek } from "@/constants/constants";
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { withHolidays } from "@/hocs/withHolidays";
-import { withPickerLogic } from "@/hocs/withPicker";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import { StartDayOfWeek } from "@/constants";
+import { withHolidays, withPickerLogic } from "@/hocs/";
+import { IDate, ISelectedDate } from "@/interfaces";
 
-import { IProps } from "./datePicker.interfaces";
-
-const initialSelectedDate: ISelectedDate = {
-    month: undefined,
-    year: undefined,
-    day: undefined,
-};
-
-const initialShownDate: IDate = {
-    ...CURRENT_DATE,
-};
+import { initialSelectedDate, initialShownDate, IProps } from "./datePicker.interfaces";
 
 export const DatePicker = memo<IProps>(
     ({
@@ -31,15 +19,14 @@ export const DatePicker = memo<IProps>(
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] =
             useState<ISelectedDate>(initialSelectedDate);
-        const CalendarWithHolidays = useMemo(() => withHolidays(Calendar), [shownDate]);
 
+        const CalendarWithHolidays = useMemo(() => withHolidays(Calendar), [shownDate]);
         const CalendarWithPicker = withPickerLogic(
             CalendarWithHolidays,
             selectedDate,
             setSelectedDate,
             shownDate,
-            setShownDate,
-            showWeekends
+            setShownDate
         );
 
         return (
