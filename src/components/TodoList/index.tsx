@@ -7,7 +7,7 @@ import { IProps } from "./todoList.interfaces";
 import "./styles.scss";
 
 export const TodoList = memo(
-    ({ todoList, selectedDate, handleDeleteTodo, handleChangeStatus }: IProps) => {
+    ({ todoList = [], selectedDate, handleDeleteTodo, handleChangeStatus }: IProps) => {
         const filteredTodoList = todoList.filter(
             (item) =>
                 item.date.year === selectedDate?.year &&

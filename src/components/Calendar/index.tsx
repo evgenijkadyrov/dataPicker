@@ -39,8 +39,8 @@ export interface ICalendarProps {
     showDaysWithTask?: boolean | undefined;
     setShownDate?: Dispatch<SetStateAction<IDate>>;
     shownDate: IDate;
-    startDate?: IDate;
-    endDate?: IDate;
+    startDate?: ISelectedDate;
+    endDate?: ISelectedDate;
 }
 
 export const Calendar = ({
@@ -63,16 +63,24 @@ export const Calendar = ({
     const showPreviousMonth = () => {
         if (setShownDate) {
             setShownDate((prevDate: IDate) => {
-                const prevMonth = prevDate.month - 1;
-                return { year: prevDate.year, month: prevMonth, day: 1 };
+                const prevMonth = prevDate.month === 0 ? 11 : prevDate.month - 1;
+                return {
+                    year: prevDate.month === 0 ? prevDate.year - 1 : prevDate.year,
+                    month: prevMonth,
+                    day: 1,
+                };
             });
         }
     };
     const showNextMonth = () => {
         if (setShownDate) {
             setShownDate((prevDate: IDate) => {
-                const prevMonth = prevDate.month + 1;
-                return { year: prevDate.year, month: prevMonth, day: 1 };
+                const nextMonth = prevDate.month === 11 ? 0 : prevDate.month + 1;
+                return {
+                    year: prevDate.month === 11 ? prevDate.year + 1 : prevDate.year,
+                    month: nextMonth,
+                    day: 1,
+                };
             });
         }
     };
