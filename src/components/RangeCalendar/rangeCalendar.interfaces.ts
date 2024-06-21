@@ -1,5 +1,5 @@
-import { IMinMaxDate } from "@/components/CalendarHeader";
 import { StartDayOfWeek } from "@/constants/constants";
+import { IMinMaxDate } from "@/interfaces";
 
 export interface IProps {
     startDayOfWeek?: StartDayOfWeek | undefined;

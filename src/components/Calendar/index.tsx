@@ -1,47 +1,26 @@
-import {
-    ChangeEvent,
-    Dispatch,
-    ReactElement,
-    SetStateAction,
-    SyntheticEvent,
-} from "react";
+import { ChangeEvent } from "react";
 import classNames from "classnames";
 
-import { CalendarBody } from "@/components/CalendarBody";
-import { CalendarHeader, IMinMaxDate } from "@/components/CalendarHeader";
+import { CalendarBody, CalendarHeader, ICalendarProps } from "@/components";
 import {
-    defaultMaxDate,
-    defaultMinDate,
-    IHolidayDate,
+    CURRENT_DATE,
+    DEFAULT_MAX_DATE,
+    DEFAULT_MIN_DATE,
+    FIRST_DAY_IN_MONTH,
+    FIRST_MONTH_IN_YEAR,
+    LAST_MONTH_IN_YEAR,
     StartDayOfWeek,
-} from "@/constants/constants";
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { calculateIsDayHoliday } from "@/helpers/calculateHolidaysDay";
-import { isDateInRange } from "@/helpers/calculateRangeDay";
-import { calculateWeekendDay } from "@/helpers/calculateWeekendDay";
-import { compareDate } from "@/helpers/compareDate";
-import { calculateDayHaveTodo } from "@/helpers/isDayHaveTodo";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+} from "@/constants";
+import {
+    compareDate,
+    isDateInRange,
+    isDayHaveTodo,
+    isDayHoliday,
+    isDayWeekendDay,
+} from "@/helpers";
+import { IDate } from "@/interfaces";
 
 import "./styles.scss";
-
-export interface ICalendarProps {
-    startDayOfWeek?: StartDayOfWeek | undefined;
-    renderPicker?: () => ReactElement;
-    renderTodolist?: () => ReactElement;
-    holidays?: IHolidayDate[];
-    showHolidays?: boolean | undefined;
-    showWeekends?: boolean | undefined;
-    selectedDate: ISelectedDate;
-    maxDate: IMinMaxDate;
-    minDate: IMinMaxDate;
-    handleDayClick?: (e: SyntheticEvent) => void;
-    showDaysWithTask?: boolean | undefined;
-    setShownDate?: Dispatch<SetStateAction<IDate>>;
-    shownDate: IDate;
-    startDate?: ISelectedDate;
-    endDate?: ISelectedDate;
-}
 
 export const Calendar = ({
     startDayOfWeek = StartDayOfWeek.Monday,
@@ -55,66 +34,56 @@ export const Calendar = ({
     showDaysWithTask,
     shownDate = CURRENT_DATE,
     setShownDate,
-    minDate = defaultMinDate,
-    maxDate = defaultMaxDate,
+    minDate = DEFAULT_MIN_DATE,
+    maxDate = DEFAULT_MAX_DATE,
     startDate,
     endDate,
 }: ICalendarProps) => {
     const showPreviousMonth = () => {
         if (setShownDate) {
-            setShownDate((prevDate: IDate) => {
-                const prevMonth = prevDate.month === 0 ? 11 : prevDate.month - 1;
-                return {
-                    year: prevDate.month === 0 ? prevDate.year - 1 : prevDate.year,
-                    month: prevMonth,
-                    day: 1,
-                };
-            });
+            setShownDate(({ month, year }: IDate) => ({
+                year: month === FIRST_MONTH_IN_YEAR ? year - 1 : year,
+                month: month === FIRST_MONTH_IN_YEAR ? LAST_MONTH_IN_YEAR : month - 1,
+                day: FIRST_DAY_IN_MONTH,
+            }));
         }
     };
     const showNextMonth = () => {
         if (setShownDate) {
-            setShownDate((prevDate: IDate) => {
-                const nextMonth = prevDate.month === 11 ? 0 : prevDate.month + 1;
-                return {
-                    year: prevDate.month === 11 ? prevDate.year + 1 : prevDate.year,
-                    month: nextMonth,
-                    day: 1,
-                };
-            });
+            setShownDate(({ month, year }: IDate) => ({
+                year: month === LAST_MONTH_IN_YEAR ? year + 1 : year,
+                month: month === LAST_MONTH_IN_YEAR ? FIRST_MONTH_IN_YEAR : month + 1,
+                day: FIRST_DAY_IN_MONTH,
+            }));
         }
     };
 
-    const handleChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleChangeDate = (
+        e: ChangeEvent<HTMLSelectElement>,
+        field: "month" | "year"
+    ) => {
         if (setShownDate) {
-            setShownDate((prevDate: IDate) => {
-                const selectMonth = +e.target.value;
-                return { year: prevDate.year, month: selectMonth, day: 1 };
-            });
-        }
-    };
-
-    const handleChangeYear = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (setShownDate) {
-            setShownDate((prevDate: IDate) => {
-                const selectYear = +e.target.value;
-                return { year: selectYear, month: prevDate.month, day: 1 };
-            });
+            setShownDate(({ year, month }: IDate) => ({
+                year: field === "year" ? Number(e.target.value) : year,
+                month: field === "month" ? Number(e.target.value) : month,
+                day: FIRST_DAY_IN_MONTH,
+            }));
         }
     };
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
-        const isWeekendDay = showWeekends && calculateWeekendDay(date);
+        const isWeekendDay = showWeekends && isDayWeekendDay(date);
         const isSelected = compareDate(date, selectedDate);
-        const isHoliday = showHolidays && calculateIsDayHoliday(date, holidays);
-        const isHaveTodo = showDaysWithTask && calculateDayHaveTodo(date);
+        const isHoliday = showHolidays && isDayHoliday(date, holidays);
+        const isHaveTodo = showDaysWithTask && isDayHaveTodo(date);
         const isStartDate = compareDate(date, startDate);
         const isEndDate = compareDate(date, endDate);
         const isRange = isDateInRange(date, startDate, endDate);
+        const { month, day } = date;
         return (
             <button
                 type="button"
-                key={`${date.month}-${date.day}`}
+                key={`${month}-${day}`}
                 className={classNames("day", "button", {
                     "day-disabled": !isCurrentMonth,
                     selected: isSelected,
@@ -126,7 +95,7 @@ export const Calendar = ({
                     isRange,
                 })}
                 onClick={handleDayClick}>
-                {date.day}
+                {day}
             </button>
         );
     };
@@ -136,11 +105,9 @@ export const Calendar = ({
             {renderPicker && renderPicker()}
             <CalendarHeader
                 currentDate={shownDate}
-                // monthI={shownDate.month}
                 showPreviousMonth={showPreviousMonth}
                 showNextMonth={showNextMonth}
-                handleChangeMonth={handleChangeMonth}
-                handleChangeYear={handleChangeYear}
+                handleChangeDate={handleChangeDate}
                 minDate={minDate}
                 maxDate={maxDate}
             />

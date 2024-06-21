@@ -1,18 +1,12 @@
 import { FC } from "react";
 
-import { StartDayOfWeek } from "@/constants/constants";
+import { ICalendarBodyProps } from "@/components/CalendarBody/calendarBody.interface";
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateFirstDay } from "@/helpers/calculateFirstDay";
 import { getStartDayOfWeek } from "@/helpers/getStartDayOfWeek";
 import { IDate } from "@/interfaces/interfaces";
 
 import "./styles.scss";
-
-interface ICalendarBodyProps {
-    currentDate: IDate;
-    renderDayButton: (date: IDate, isCurrentMonth: boolean) => Element;
-    startDayOfWeek: StartDayOfWeek;
-}
 
 export const CalendarBody: FC = ({
     currentDate = CURRENT_DATE,
