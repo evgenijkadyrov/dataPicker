@@ -1,18 +1,19 @@
 import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
-import { StartDayOfWeek } from "@/constants";
-import { withHolidays, withPickerLogic } from "@/hocs/";
+import { StartDayOfWeek } from "@/constants/constants";
+import { withHolidays } from "@/hocs/withHolidays";
+import { withRangeLogic } from "@/hocs/withRange";
 import {
     IDate,
     initialSelectedDate,
     initialShownDate,
     ISelectedDate,
-} from "@/interfaces";
+} from "@/interfaces/interfaces";
 
-import { IProps } from "./datePicker.interfaces";
+import { IProps } from "./rangeCalendar.interfaces";
 
-export const DatePicker = memo<IProps>(
+export const RangeCalendar = memo<IProps>(
     ({
         startDayOfWeek = StartDayOfWeek.Monday,
         maxDate,
@@ -24,9 +25,8 @@ export const DatePicker = memo<IProps>(
         const [shownDate, setShownDate] = useState<IDate>(initialShownDate);
         const [selectedDate, setSelectedDate] =
             useState<ISelectedDate>(initialSelectedDate);
-
         const CalendarWithHolidays = useMemo(() => withHolidays(Calendar), [shownDate]);
-        const CalendarWithPicker = withPickerLogic(
+        const CalendarWithRange = withRangeLogic(
             CalendarWithHolidays,
             selectedDate,
             setSelectedDate,
@@ -35,7 +35,7 @@ export const DatePicker = memo<IProps>(
         );
 
         return (
-            <CalendarWithPicker
+            <CalendarWithRange
                 startDayOfWeek={startDayOfWeek}
                 maxDate={maxDate}
                 minDate={minDate}

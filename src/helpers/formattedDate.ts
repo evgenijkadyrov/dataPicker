@@ -1,4 +1,4 @@
-import { IMinMaxDate } from "@/components/CalendarHeader";
+import { IMinMaxDate } from "@/interfaces";
 
 export const formattedDate = (date: Date): IMinMaxDate => {
     const year = date.getFullYear();

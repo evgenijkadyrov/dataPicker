@@ -1,41 +1,18 @@
-import { ChangeEvent, FC } from "react";
-
-import { NextIcon } from "@/components/Icons/NextIcon";
-import { PrevIcon } from "@/components/Icons/PrevIcon";
-import { MONTH_NAMES } from "@/constants/constants";
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { equalDate } from "@/helpers/equalDate";
-import { getYearNumbers } from "@/helpers/getYearNumber";
-import { IDate } from "@/interfaces/interfaces";
+import { ICalendarHeaderProps } from "@/components";
+import { NextIcon, PrevIcon } from "@/components/Icons";
+import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
+import { equalDate, generateRangeOfYearForSelect } from "@/helpers";
 
 import "./styles.scss";
 
-export interface IMinMaxDate {
-    month: number;
-    year: number;
-}
-
-interface ICalendarHeaderProps {
-    currentDate: IDate;
-
-    showPreviousMonth: () => void;
-    showNextMonth: () => void;
-    handleChangeYear: (event: ChangeEvent<HTMLSelectElement>) => void;
-    handleChangeMonth: (event: ChangeEvent<HTMLSelectElement>) => void;
-    minDate: IMinMaxDate;
-    maxDate: IMinMaxDate;
-}
-
-export const CalendarHeader: FC<ICalendarHeaderProps> = ({
-    // monthI,
+export const CalendarHeader = ({
     showPreviousMonth,
     showNextMonth,
-    handleChangeMonth,
-    handleChangeYear,
+    handleChangeDate,
     currentDate,
     minDate,
     maxDate,
-}) => (
+}: ICalendarHeaderProps) => (
     <div className="calendar_header">
         <div className="months">
             <button
@@ -49,7 +26,7 @@ export const CalendarHeader: FC<ICalendarHeaderProps> = ({
                 <select
                     className="select_month"
                     value={currentDate.month}
-                    onChange={handleChangeMonth}>
+                    onChange={(e) => handleChangeDate(e, "month")}>
                     {MONTH_NAMES.map((monthItem, index) => (
                         <option key={monthItem} value={index} className="month_text">
                             {monthItem}
@@ -59,8 +36,12 @@ export const CalendarHeader: FC<ICalendarHeaderProps> = ({
                 <select
                     className="select_month"
                     value={currentDate.year}
-                    onChange={handleChangeYear}>
-                    {getYearNumbers(CURRENT_DATE.year).map((yearItem) => (
+                    onChange={(e) => handleChangeDate(e, "year")}>
+                    {generateRangeOfYearForSelect(
+                        CURRENT_DATE.year,
+                        maxDate,
+                        minDate
+                    ).map((yearItem) => (
                         <option key={yearItem} value={yearItem} className="month_text">
                             {yearItem}
                         </option>

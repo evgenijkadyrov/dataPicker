@@ -1,22 +1,19 @@
+@import "@/styles/styles.scss";
+@import "@/components/CalendarHeader/styles.scss";
+
 .weekday {
-    width: 32px;
-    height: 32px;
+    @include commonStyle;
+    width: $width-day-s;
+    height: $height-day-s;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(51, 51, 51);
-    font-family:
-        Open Sans,
-        serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 19px;
-    letter-spacing: 0;
+    color: $dark-grey;
 }
 
 .row {
     display: flex;
-    width: 230px;
+    width: $width-l;
     justify-content: center;
     align-items: center;
 }
@@ -24,17 +21,17 @@
 .day {
     display: flex;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: $width-day-s;
+    height: $height-day-s;
     align-items: center;
     flex-basis: calc(100% / 7);
-    color: rgb(51, 51, 51);
+    color: $dark-grey;
     font-family:
         Open Sans,
         serif;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-large;
+    line-height: $font-size-xl;
     letter-spacing: 0;
     cursor: pointer;
 }
@@ -42,18 +39,21 @@
 .month_body {
     display: flex;
     flex-wrap: wrap;
-    width: 250px;
+    width: $width-xl;
 }
 
 .day-disabled {
-    color: rgb(170, 170, 170);
+    color: $day-disabled;
 }
 .selected {
-    color: rgb(255, 255, 255);
+    color: $white;
 }
 .red {
-    color: red;
+    color: $day-red;
 }
 .isWeekendDay {
-    color: red;
+    color: $day-red;
+}
+.isHoliday {
+    color: $day-red;
 }

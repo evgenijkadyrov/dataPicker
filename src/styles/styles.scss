@@ -1,0 +1,65 @@
+//colors
+
+$white: rgb(255, 255, 255);
+$grey: rgb(128, 128, 128);
+$dark-grey: rgb(51, 51, 51);
+$black: rgb(0, 0, 0);
+$blue: rgb(0, 97, 236);
+
+$background-blue: rgb(47, 128, 237);
+$background-light: rgb(241, 241, 241);
+
+$day-red: rgb(255, 0, 0);
+$day-current: rgba(47, 128, 237, 0.62);
+$day-start: rgba(47, 128, 237, 0.6);
+$day-end: rgb(47, 128, 237);
+$day-in-range: rgba(47, 128, 237, 0.1);
+$day-disabled: rgb(170, 170, 170);
+
+//font-sizes
+$font-size-s: 12px;
+$font-size-sm: 13px;
+$font-size-m: 14px;
+$font-size-l: 16px;
+$font-size-xl: 18px;
+$font-size-xxl: 19px;
+
+//font-weight
+$font-weight-thin: 300;
+$font-weight-normal: 400;
+$font-weight-large: 600;
+$font-weight-bold: 700;
+//width
+$width-s: 200px;
+$width-m: 224px;
+$width-l: 230px;
+$width-xl: 250px;
+//day-sizes
+$width-day-s: 32px;
+$width-day-m: 40px;
+$height-day-s: 32px;
+$height-day-m: 40px;
+$height-day-xl: 100px;
+//height
+$height-s: 20px;
+$height-l: 32px;
+$height-m: 20px;
+$height-xl: 20px;
+
+//padding, margin
+$size-s: 5px;
+$size-m: 8px;
+$size-l: 10px;
+$size-xl: 15px;
+
+//border-radius
+$border-radius-s: 4px;
+$border-radius-l: 8px;
+$border-radius-m: 10px;
+$border-radius-xl: 12px;
+
+//border
+$border-s: 1px;
+$border-m: 2px;
+
+$letter-spacing: 2px;

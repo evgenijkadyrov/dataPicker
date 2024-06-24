@@ -1,18 +1,17 @@
 import { memo } from "react";
 
 import { ClearIcon } from "@/components/Icons/ClearIcon";
+import { compareDate } from "@/helpers";
+import { IDate } from "@/interfaces";
 
 import { IProps } from "./todoList.interfaces";
 
 import "./styles.scss";
 
 export const TodoList = memo(
-    ({ todoList, selectedDate, handleDeleteTodo, handleChangeStatus }: IProps) => {
-        const filteredTodoList = todoList.filter(
-            (item) =>
-                item.date.year === selectedDate?.year &&
-                item.date.month === selectedDate?.month &&
-                item.date.day === selectedDate?.day
+    ({ todoList = [], selectedDate, handleDeleteTodo, handleChangeStatus }: IProps) => {
+        const filteredTodoList = todoList.filter((item) =>
+            compareDate(item.date as IDate, selectedDate)
         );
         return (
             <ul>

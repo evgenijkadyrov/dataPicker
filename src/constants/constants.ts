@@ -1,4 +1,4 @@
-import { IMinMaxDate } from "@/components/CalendarHeader";
+import { IMinMaxDate } from "@/interfaces";
 
 export const MONTH_NAMES = [
     "January",
@@ -51,5 +51,10 @@ export const HOLIDAYS_IN_BELARUS = [
     { month: 11, day: 7 },
     { month: 12, day: 25 },
 ];
-export const defaultMinDate: IMinMaxDate = { year: 2020, month: 1 };
-export const defaultMaxDate: IMinMaxDate = { year: 2025, month: 11 };
+export const DEFAULT_MIN_DATE: IMinMaxDate = { year: 2010, month: 1 };
+export const DEFAULT_MAX_DATE: IMinMaxDate = { year: 2030, month: 11 };
+
+export const LAST_MONTH_IN_YEAR = 11;
+export const FIRST_MONTH_IN_YEAR = 0;
+
+export const FIRST_DAY_IN_MONTH = 1;

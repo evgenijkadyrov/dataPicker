@@ -6,8 +6,8 @@ export interface IProps {
     maxDate: IMinMaxDate;
     minDate: IMinMaxDate;
     color?: string;
-    showHolidays?: boolean;
-    showWeekends?: boolean;
-    showDaysWithTask?: boolean;
-    onChange?: (value: string) => void;
+    showHolidays?: boolean | undefined;
+    showWeekends?: boolean | undefined;
+    showDaysWithTask?: boolean | undefined;
+    onChange?: (value: string | undefined) => void;
 }

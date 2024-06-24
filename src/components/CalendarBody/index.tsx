@@ -1,28 +1,25 @@
 import { FC } from "react";
 
-import { StartDayOfWeek } from "@/constants/constants";
+import { ICalendarBodyProps } from "@/components";
 import { CURRENT_DATE } from "@/constants/currentDate";
-import { calculateFirstDay } from "@/helpers/calculateFirstDay";
-import { getStartDayOfWeek } from "@/helpers/getStartDayOfWeek";
-import { IDate } from "@/interfaces/interfaces";
+import { calculateFirstDay, getStartDayOfWeek } from "@/helpers";
+import {
+    getNextMonthAndYear,
+    getPreviousMonthAndYear,
+} from "@/helpers/calculateNextPreviosPeriod";
+import { IDate } from "@/interfaces";
 
 import "./styles.scss";
-
-interface ICalendarBodyProps {
-    currentDate: IDate;
-    renderDayButton: (date: IDate, isCurrentMonth: boolean) => Element;
-    startDayOfWeek: StartDayOfWeek;
-}
 
 export const CalendarBody: FC = ({
     currentDate = CURRENT_DATE,
     renderDayButton,
     startDayOfWeek,
 }: ICalendarBodyProps) => {
-    const monthI: number = currentDate?.month;
-    const { year } = currentDate;
-    const daysInMonth: number = new Date(year, monthI + 1, 0).getDate();
-    const firstDay: number = calculateFirstDay(startDayOfWeek, year, monthI);
+    const { year, month } = currentDate;
+    const daysInMonth: number = new Date(year, month + 1, 0).getDate();
+    const firstDay: number = calculateFirstDay(startDayOfWeek, year, month);
+
     const weekdaysMarkup = getStartDayOfWeek(startDayOfWeek).map((weekday) => (
         <div key={weekday} className="weekday">
             {weekday}
@@ -32,9 +29,9 @@ export const CalendarBody: FC = ({
     const calendarCells = [];
     let row = [];
 
-    const prevMonth: number = monthI === 0 ? 11 : monthI - 1;
-    const prevYear: number = monthI === 0 ? year - 1 : year;
+    const { prevMonth, prevYear } = getPreviousMonthAndYear(month, year);
     const daysInPrevMonth: number = new Date(prevYear, prevMonth + 1, 0).getDate();
+
     for (let i = firstDay - 1; i >= 0; i -= 1) {
         const day = daysInPrevMonth - i;
         const prevDate = { day, month: prevMonth, year: prevYear };
@@ -42,7 +39,7 @@ export const CalendarBody: FC = ({
     }
 
     for (let day = 1; day <= daysInMonth; day += 1) {
-        const currentMonthDate: IDate = { day, month: monthI, year };
+        const currentMonthDate: IDate = { day, month, year };
         row.push(renderDayButton(currentMonthDate, true));
 
         if (row.length === 7) {
@@ -55,9 +52,7 @@ export const CalendarBody: FC = ({
         }
     }
 
-    // Days of the next month
-    const nextMonth: number = monthI === 11 ? 0 : monthI + 1;
-    const nextYear: number = monthI === 11 ? year + 1 : year;
+    const { nextMonth, nextYear } = getNextMonthAndYear(month, year);
     const remainingCells: number = 7 - row.length;
 
     for (let day = 1; day <= remainingCells; day += 1) {
@@ -65,7 +60,6 @@ export const CalendarBody: FC = ({
         row.push(renderDayButton(nextDate, false));
     }
 
-    // Add the last row of the current month
     calendarCells.push(
         <div key="row-last" className="row">
             {row}
