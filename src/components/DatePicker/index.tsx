@@ -3,9 +3,14 @@ import { memo, useMemo, useState } from "react";
 import { Calendar } from "@/components";
 import { StartDayOfWeek } from "@/constants";
 import { withHolidays, withPickerLogic } from "@/hocs/";
-import { IDate, ISelectedDate } from "@/interfaces";
+import {
+    IDate,
+    initialSelectedDate,
+    initialShownDate,
+    ISelectedDate,
+} from "@/interfaces";
 
-import { initialSelectedDate, initialShownDate, IProps } from "./datePicker.interfaces";
+import { IProps } from "./datePicker.interfaces";
 
 export const DatePicker = memo<IProps>(
     ({

@@ -1,16 +1,9 @@
-import { KeyboardEvent, memo, SyntheticEvent } from "react";
+import { memo } from "react";
 
-import { CalendarIcon } from "@/components/Icons/Calendar";
-import { ClearIcon } from "@/components/Icons/ClearIcon";
+import { IProps } from "@/components";
+import { CalendarIcon, ClearIcon } from "@/components/Icons/";
 
 import "./styles.scss";
-
-export interface IProps {
-    value: string;
-    onChange: (e: SyntheticEvent) => void;
-    onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-    onClick: () => void;
-}
 
 export const Picker = memo(({ value, onChange, onKeyDown, onClick }: IProps) => (
     <div className="container">
