@@ -1,22 +1,17 @@
 import { memo, useMemo, useState } from "react";
-import { IProps } from "src/components/RangeCalendar/rangeCalendar.interfaces";
 
 import { Calendar } from "@/components";
 import { StartDayOfWeek } from "@/constants/constants";
-import { CURRENT_DATE } from "@/constants/currentDate";
 import { withHolidays } from "@/hocs/withHolidays";
 import { withRangeLogic } from "@/hocs/withRange";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import {
+    IDate,
+    initialSelectedDate,
+    initialShownDate,
+    ISelectedDate,
+} from "@/interfaces/interfaces";
 
-const initialSelectedDate: ISelectedDate = {
-    month: undefined,
-    year: undefined,
-    day: undefined,
-};
-
-const initialShownDate: IDate = {
-    ...CURRENT_DATE,
-};
+import { IProps } from "./rangeCalendar.interfaces";
 
 export const RangeCalendar = memo<IProps>(
     ({
