@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import classNames from "classnames";
 
 import { CalendarBody, CalendarHeader, ICalendarProps } from "@/components";
@@ -6,9 +5,6 @@ import {
     CURRENT_DATE,
     DEFAULT_MAX_DATE,
     DEFAULT_MIN_DATE,
-    FIRST_DAY_IN_MONTH,
-    FIRST_MONTH_IN_YEAR,
-    LAST_MONTH_IN_YEAR,
     StartDayOfWeek,
 } from "@/constants";
 import {
@@ -18,6 +14,7 @@ import {
     isDayHoliday,
     isDayWeekendDay,
 } from "@/helpers";
+import { useControlMonth } from "@/hooks/useControlMonth";
 import { IDate } from "@/interfaces";
 
 import "./styles.scss";
@@ -40,37 +37,8 @@ export const Calendar = ({
     endDate,
     renderClear,
 }: ICalendarProps) => {
-    const showPreviousMonth = () => {
-        if (setShownDate) {
-            setShownDate(({ month, year }: IDate) => ({
-                year: month === FIRST_MONTH_IN_YEAR ? year - 1 : year,
-                month: month === FIRST_MONTH_IN_YEAR ? LAST_MONTH_IN_YEAR : month - 1,
-                day: FIRST_DAY_IN_MONTH,
-            }));
-        }
-    };
-    const showNextMonth = () => {
-        if (setShownDate) {
-            setShownDate(({ month, year }: IDate) => ({
-                year: month === LAST_MONTH_IN_YEAR ? year + 1 : year,
-                month: month === LAST_MONTH_IN_YEAR ? FIRST_MONTH_IN_YEAR : month + 1,
-                day: FIRST_DAY_IN_MONTH,
-            }));
-        }
-    };
-
-    const handleChangeDate = (
-        e: ChangeEvent<HTMLSelectElement>,
-        field: "month" | "year"
-    ) => {
-        if (setShownDate) {
-            setShownDate(({ year, month }: IDate) => ({
-                year: field === "year" ? Number(e.target.value) : year,
-                month: field === "month" ? Number(e.target.value) : month,
-                day: FIRST_DAY_IN_MONTH,
-            }));
-        }
-    };
+    const { showPreviousMonth, showNextMonth, handleChangeDate } =
+        useControlMonth(setShownDate);
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
         const isWeekendDay = showWeekends && isDayWeekendDay(date);
