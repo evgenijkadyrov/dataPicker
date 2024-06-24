@@ -1,9 +1,12 @@
 import { FC } from "react";
 
 import { ICalendarBodyProps } from "@/components";
-import { FIRST_MONTH_IN_YEAR, LAST_MONTH_IN_YEAR } from "@/constants";
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateFirstDay, getStartDayOfWeek } from "@/helpers";
+import {
+    getNextMonthAndYear,
+    getPreviousMonthAndYear,
+} from "@/helpers/calculateNextPreviosPeriod";
 import { IDate } from "@/interfaces";
 
 import "./styles.scss";
@@ -26,9 +29,7 @@ export const CalendarBody: FC = ({
     const calendarCells = [];
     let row = [];
 
-    const prevMonth: number =
-        month === FIRST_MONTH_IN_YEAR ? LAST_MONTH_IN_YEAR : month - 1;
-    const prevYear: number = month === FIRST_MONTH_IN_YEAR ? year - 1 : year;
+    const { prevMonth, prevYear } = getPreviousMonthAndYear(month, year);
     const daysInPrevMonth: number = new Date(prevYear, prevMonth + 1, 0).getDate();
 
     for (let i = firstDay - 1; i >= 0; i -= 1) {
@@ -51,10 +52,7 @@ export const CalendarBody: FC = ({
         }
     }
 
-    // Days of the next month
-    const nextMonth: number =
-        month === LAST_MONTH_IN_YEAR ? FIRST_MONTH_IN_YEAR : month + 1;
-    const nextYear: number = month === LAST_MONTH_IN_YEAR ? year + 1 : year;
+    const { nextMonth, nextYear } = getNextMonthAndYear(month, year);
     const remainingCells: number = 7 - row.length;
 
     for (let day = 1; day <= remainingCells; day += 1) {
@@ -62,7 +60,6 @@ export const CalendarBody: FC = ({
         row.push(renderDayButton(nextDate, false));
     }
 
-    // Add the last row of the current month
     calendarCells.push(
         <div key="row-last" className="row">
             {row}
