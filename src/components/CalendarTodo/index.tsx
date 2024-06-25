@@ -2,6 +2,7 @@ import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
 import { ICalendarProps } from "@/components/Calendar/calendar.interface";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { StartDayOfWeek } from "@/constants";
 import { withAddTodolist, withHolidays } from "@/hocs";
 import { IDate, initialShownDate, ISelectedDate } from "@/interfaces";
@@ -28,15 +29,17 @@ export const CalendarTodo = memo<ICalendarProps>(
         );
 
         return (
-            <CalendarWithTodo
-                startDayOfWeek={startDayOfWeek}
-                maxDate={maxDate}
-                minDate={minDate}
-                showHolidays={showHolidays}
-                showWeekends={showWeekends}
-                showDaysWithTask={showDaysWithTask}
-                shownDate={shownDate}
-            />
+            <ErrorBoundary>
+                <CalendarWithTodo
+                    startDayOfWeek={startDayOfWeek}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    showHolidays={showHolidays}
+                    showWeekends={showWeekends}
+                    showDaysWithTask={showDaysWithTask}
+                    shownDate={shownDate}
+                />
+            </ErrorBoundary>
         );
     }
 );
