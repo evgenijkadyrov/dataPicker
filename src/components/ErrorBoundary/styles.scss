@@ -1,0 +1,14 @@
+@import "@/styles/styles.scss";
+
+.errorWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+}
+
+.heading {
+    font-size: $font-size-xxl;
+    color: $black;
+}

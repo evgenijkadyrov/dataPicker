@@ -1,6 +1,7 @@
 import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { StartDayOfWeek } from "@/constants";
 import { withHolidays, withPickerLogic } from "@/hocs/";
 import {
@@ -35,15 +36,17 @@ export const DatePicker = memo<IProps>(
         );
 
         return (
-            <CalendarWithPicker
-                startDayOfWeek={startDayOfWeek}
-                maxDate={maxDate}
-                minDate={minDate}
-                color={color}
-                showHolidays={showHolidays}
-                showWeekends={showWeekends}
-                shownDate={shownDate}
-            />
+            <ErrorBoundary>
+                <CalendarWithPicker
+                    startDayOfWeek={startDayOfWeek}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    color={color}
+                    showHolidays={showHolidays}
+                    showWeekends={showWeekends}
+                    shownDate={shownDate}
+                />
+            </ErrorBoundary>
         );
     }
 );
