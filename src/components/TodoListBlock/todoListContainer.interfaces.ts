@@ -1,7 +1,6 @@
 import { KeyboardEvent, SyntheticEvent } from "react";
 
-import { ITodo } from "@/hocs/withAddTodo";
-import { ISelectedDate } from "@/interfaces/interfaces";
+import { ISelectedDate, ITodo } from "@/interfaces";
 
 export interface IProps {
     todo: string;

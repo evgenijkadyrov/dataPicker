@@ -1,4 +1,4 @@
-import { SHORT_DAY_NAMES, StartDayOfWeek } from "@/constants/constants";
+import { SHORT_DAY_NAMES, StartDayOfWeek } from "@/constants";
 
 export const calculateStartDayOfWeek = (startDayOfWeek: StartDayOfWeek) => {
     if (startDayOfWeek === StartDayOfWeek.Monday) {

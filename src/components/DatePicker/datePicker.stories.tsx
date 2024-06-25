@@ -1,10 +1,8 @@
-import { Meta, StoryObj } from "@storybook/addon-docs/blocks";
+import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-//
 import { DatePicker } from "@/components";
-// import { StartDayOfWeek } from "@/constants/constants";
-//
+
 const meta: Meta<typeof DatePicker> = {
     title: "DataPicker",
     component: DatePicker,
@@ -13,9 +11,7 @@ const meta: Meta<typeof DatePicker> = {
 };
 
 export default meta;
-//
 type Story = StoryObj<typeof DatePicker>;
-//
 export const Default: Story = {
     tags: ["autodocs"],
 };

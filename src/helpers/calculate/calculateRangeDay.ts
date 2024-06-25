@@ -1,4 +1,4 @@
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export const isDateInRange = (
     date: IDate,

@@ -9,11 +9,9 @@ import {
 } from "react";
 
 import { Picker } from "@/components";
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { isValidDate } from "@/helpers/comparer/isValidDate";
-import { formatDateToString } from "@/helpers/formatter/formattedDateToString";
-import { formatStringToDate } from "@/helpers/formatter/formattedStringToDate";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import { CURRENT_DATE } from "@/constants";
+import { formatDateToString, formatStringToDate, isValidDate } from "@/helpers";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export function withPickerLogic<T>(
     Component: ComponentType<T>,

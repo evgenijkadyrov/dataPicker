@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
 
-import { HOLIDAYS_IN_BELARUS } from "@/constants/constants";
+import { HOLIDAYS_IN_BELARUS } from "@/constants";
 
 export function withHolidays<T>(Component: ComponentType<T>) {
     return (hocProps: Omit<T, "holidays">) => (

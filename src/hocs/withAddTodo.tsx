@@ -10,15 +10,8 @@ import {
 } from "react";
 
 import { TodoListBlock } from "@/components";
-import { getTodosFromStorage } from "@/helpers/getDataFromStorage";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
-
-export interface ITodo {
-    id: number;
-    date: ISelectedDate;
-    content: string;
-    status: boolean;
-}
+import { getTodosFromStorage } from "@/helpers";
+import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 
 export function withAddTodolist<T>(
     Component: ComponentType<T>,

@@ -1,7 +1,8 @@
 import { memo } from "react";
 
-import { IProps } from "@/components";
 import { CalendarIcon, ClearIcon } from "@/components/Icons/";
+
+import { IProps } from "./picker.interface";
 
 import "./styles.scss";
 

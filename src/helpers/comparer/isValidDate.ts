@@ -1,4 +1,4 @@
-import { IDate } from "@/interfaces/interfaces";
+import { IDate } from "@/interfaces";
 
 export const isValidDate = (date: IDate | undefined): boolean => {
     if (!date) {

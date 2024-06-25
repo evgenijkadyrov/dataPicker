@@ -7,7 +7,3 @@ export * from "./Picker/index";
 export * from "./RangeCalendar/index";
 export * from "./TodoList/index";
 export * from "./TodoListBlock/index";
-export { ICalendarProps } from "@/components/Calendar/calendar.interface";
-export { ICalendarBodyProps } from "@/components/CalendarBody/calendarBody.interface";
-export { ICalendarHeaderProps } from "@/components/CalendarHeader/calendarHeader.interface";
-export { IProps } from "@/components/Picker/picker.interface";
