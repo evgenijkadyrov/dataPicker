@@ -1,15 +1,10 @@
 import { memo, useMemo, useState } from "react";
 
-import { Calendar, ICalendarProps } from "@/components";
-import { StartDayOfWeek } from "@/constants/constants";
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { withAddTodolist } from "@/hocs/withAddTodo";
-import { withHolidays } from "@/hocs/withHolidays";
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
-
-const initialShownDate: IDate = {
-    ...CURRENT_DATE,
-};
+import { Calendar } from "@/components";
+import { ICalendarProps } from "@/components/Calendar/calendar.interface";
+import { StartDayOfWeek } from "@/constants";
+import { withAddTodolist, withHolidays } from "@/hocs";
+import { IDate, initialShownDate, ISelectedDate } from "@/interfaces";
 
 export const CalendarTodo = memo<ICalendarProps>(
     ({

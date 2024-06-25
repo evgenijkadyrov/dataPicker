@@ -7,7 +7,7 @@ import {
     useState,
 } from "react";
 
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 import "@/components/RangeCalendar/styles.scss";
 

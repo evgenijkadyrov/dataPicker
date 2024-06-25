@@ -1,7 +1,8 @@
-import { ICalendarHeaderProps } from "@/components";
 import { NextIcon, PrevIcon } from "@/components/Icons";
 import { CURRENT_DATE, MONTH_NAMES } from "@/constants";
 import { equalDate, generateRangeOfYearForSelect } from "@/helpers";
+
+import { ICalendarHeaderProps } from "./calendarHeader.interface";
 
 import "./styles.scss";
 

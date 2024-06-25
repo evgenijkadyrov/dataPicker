@@ -1,10 +1,11 @@
+@import "@/styles/styles.scss";
 ul {
-    width: 224px;
+    width: $width-m;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin: 5px 0 0;
-    padding: 0 0 0 10px;
+    gap: $size-s;
+    margin: $size-s 0 0;
+    padding: 0 0 0 $size-l;
     list-style: none;
 }
 
@@ -12,10 +13,10 @@ li {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 5px;
+    gap: $size-s;
 }
 button {
-    margin-top: 4px;
+    margin-top: $size-s;
     border: none;
     outline: none;
     background: transparent;

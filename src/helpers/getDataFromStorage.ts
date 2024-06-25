@@ -1,4 +1,4 @@
-import { ITodo } from "@/hocs";
+import { ITodo } from "@/interfaces";
 
 export const getTodosFromStorage = () => {
     const value = localStorage.getItem("todoList");

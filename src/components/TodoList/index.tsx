@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { ClearIcon } from "@/components/Icons/ClearIcon";
+import { ClearIcon } from "@/components/Icons";
 import { compareDate } from "@/helpers";
 import { IDate } from "@/interfaces";
 

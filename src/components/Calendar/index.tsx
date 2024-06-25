@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { CalendarBody, CalendarHeader, ICalendarProps } from "@/components";
+import { CalendarBody, CalendarHeader } from "@/components";
 import {
     CURRENT_DATE,
     DEFAULT_MAX_DATE,
@@ -16,6 +16,8 @@ import {
 } from "@/helpers";
 import { useControlMonth } from "@/hooks/useControlMonth";
 import { IDate } from "@/interfaces";
+
+import { ICalendarProps } from "./calendar.interface";
 
 import "./styles.scss";
 

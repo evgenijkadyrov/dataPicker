@@ -1,34 +1,37 @@
+@import "@/styles/styles.scss";
+$padding-two: 2px;
+$padding-bigger: 25px;
 .container {
-    width: 224px;
+    width: $width-m;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: $size-l;
 }
 
 .calendarIconWrapper {
     position: absolute;
-    height: 16px;
+    height: $height-m;
     top: 50%;
-    left: 5px;
+    left: $size-s;
     transform: translateY(-50%);
 }
 
 .clearIconWrapper {
     position: absolute;
-    height: 16px;
+    height: $height-m;
     top: 50%;
-    right: 5px;
+    right: $size-s;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
 .styledInput {
     width: 75%;
-    padding: 2px 25px;
+    padding: $padding-two $padding-bigger;
     font: inherit;
     outline: none;
-    color: black;
+    color: $black;
 
     &:invalid {
-        border-color: red;
+        border-color: $day-red;
     }
 }

@@ -26,3 +26,10 @@ export const initialSelectedDate: ISelectedDate = {
 export const initialShownDate: IDate = {
     ...CURRENT_DATE,
 };
+
+export interface ITodo {
+    id: number;
+    date: ISelectedDate;
+    content: string;
+    status: boolean;
+}

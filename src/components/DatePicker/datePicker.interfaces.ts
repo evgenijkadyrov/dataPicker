@@ -1,4 +1,4 @@
-import { StartDayOfWeek } from "@/constants/constants";
+import { StartDayOfWeek } from "@/constants";
 import { IMinMaxDate } from "@/interfaces";
 
 export interface IProps {

@@ -1,4 +1,4 @@
-import { IDate } from "@/interfaces/interfaces";
+import { IDate } from "@/interfaces";
 
 export const isDayWeekendDay = (date: IDate) => {
     const dayOfWeek = new Date(date.year, date.month, date.day).getDay();

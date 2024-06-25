@@ -1,5 +1,5 @@
-import { IHolidayDate } from "@/constants/constants";
-import { IDate } from "@/interfaces/interfaces";
+import { IHolidayDate } from "@/constants";
+import { IDate } from "@/interfaces";
 
 export const isDayHoliday = (date: IDate, holidays: IHolidayDate[] | undefined) => {
     if (holidays === undefined) return false;

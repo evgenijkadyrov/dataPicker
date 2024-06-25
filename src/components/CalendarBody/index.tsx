@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import { ICalendarBodyProps } from "@/components";
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateFirstDay, calculateStartDayOfWeek } from "@/helpers";
 import {
@@ -8,6 +7,8 @@ import {
     getPreviousMonthAndYear,
 } from "@/helpers/calculate/calculateNextPreviosPeriod";
 import { IDate } from "@/interfaces";
+
+import { ICalendarBodyProps } from "./calendarBody.interface";
 
 import "./styles.scss";
 

@@ -1,4 +1,4 @@
-import { StartDayOfWeek } from "@/constants/constants";
+import { StartDayOfWeek } from "@/constants";
 
 export const calculateFirstDay = (
     startDayOfWeek: StartDayOfWeek,
