@@ -5,14 +5,22 @@ export const generateRangeOfYearForSelect = (
     maxDate: IMinMaxDate,
     minDate: IMinMaxDate
 ): number[] => {
-    const years: number[] = [currentYear];
-    const rangeMax = maxDate.year - currentYear;
-    const rangeMin = currentYear - minDate.year;
-    for (let i = 1; i <= rangeMin; i += 1) {
-        years.push(currentYear - i);
+    let year = currentYear;
+
+    if (year < minDate.year) {
+        year = minDate.year;
     }
+
+    const years: number[] = [year];
+    const rangeMax = maxDate.year - year;
+    const rangeMin = year - minDate.year;
+
+    for (let i = 1; i <= rangeMin; i += 1) {
+        years.push(year - i);
+    }
+
     for (let i = 1; i <= rangeMax; i += 1) {
-        years.unshift(currentYear + i);
+        years.unshift(year + i);
     }
 
     return years;

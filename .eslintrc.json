@@ -18,6 +18,12 @@
             "parserOptions": {
                 "project": ["./tsconfig.json"]
             }
+        },
+        {
+            "files": ["tests/**/*"],
+            "env": {
+                "jest": true
+            }
         }
     ],
     "parserOptions": {

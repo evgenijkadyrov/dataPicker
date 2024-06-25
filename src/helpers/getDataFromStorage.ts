@@ -1,4 +1,4 @@
-import { ITodo } from "@/hocs/withAddTodo";
+import { ITodo } from "@/hocs";
 
 export const getTodosFromStorage = () => {
     const value = localStorage.getItem("todoList");

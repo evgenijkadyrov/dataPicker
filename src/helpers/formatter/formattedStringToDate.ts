@@ -1,5 +1,5 @@
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { IDate } from "@/interfaces/interfaces";
+import { CURRENT_DATE } from "@/constants";
+import { IDate } from "@/interfaces";
 
 export const formatStringToDate = (dateString: string): IDate => {
     const dateArray = dateString.split("-");
