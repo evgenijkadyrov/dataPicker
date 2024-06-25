@@ -2,11 +2,11 @@ import { FC } from "react";
 
 import { ICalendarBodyProps } from "@/components";
 import { CURRENT_DATE } from "@/constants/currentDate";
-import { calculateFirstDay, getStartDayOfWeek } from "@/helpers";
+import { calculateFirstDay, calculateStartDayOfWeek } from "@/helpers";
 import {
     getNextMonthAndYear,
     getPreviousMonthAndYear,
-} from "@/helpers/calculateNextPreviosPeriod";
+} from "@/helpers/calculate/calculateNextPreviosPeriod";
 import { IDate } from "@/interfaces";
 
 import "./styles.scss";
@@ -20,7 +20,7 @@ export const CalendarBody: FC = ({
     const daysInMonth: number = new Date(year, month + 1, 0).getDate();
     const firstDay: number = calculateFirstDay(startDayOfWeek, year, month);
 
-    const weekdaysMarkup = getStartDayOfWeek(startDayOfWeek).map((weekday) => (
+    const weekdaysMarkup = calculateStartDayOfWeek(startDayOfWeek).map((weekday) => (
         <div key={weekday} className="weekday">
             {weekday}
         </div>

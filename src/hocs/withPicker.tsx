@@ -10,9 +10,9 @@ import {
 
 import { Picker } from "@/components";
 import { CURRENT_DATE } from "@/constants/currentDate";
-import { formatDateToString } from "@/helpers/formattedDateToString";
-import { formatStringToDate } from "@/helpers/formattedStringToDate";
-import { isValidDate } from "@/helpers/isValidDate";
+import { isValidDate } from "@/helpers/comparer/isValidDate";
+import { formatDateToString } from "@/helpers/formatter/formattedDateToString";
+import { formatStringToDate } from "@/helpers/formatter/formattedStringToDate";
 import { IDate, ISelectedDate } from "@/interfaces/interfaces";
 
 export function withPickerLogic<T>(

@@ -19,15 +19,6 @@ export enum StartDayOfWeek {
     Monday = "Monday",
     Sunday = "Sunday",
 }
-export const DAY_NAMES = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-];
 
 export const SHORT_DAY_NAMES = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 

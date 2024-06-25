@@ -1,4 +1,4 @@
-import { IDate, ISelectedDate } from "@/interfaces/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export const compareDate = (date1: IDate, date2: ISelectedDate | undefined): boolean => {
     if (!date1 || !date2) {
