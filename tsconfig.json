@@ -5,6 +5,7 @@
         "module": "ESNext",
         "declaration": true,
         "declarationDir": "types",
+        "emitDeclarationOnly": true,
         "jsx": "react-jsx",
         "outDir": "./dist",
         "moduleResolution": "Node",

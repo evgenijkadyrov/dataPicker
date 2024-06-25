@@ -21,6 +21,10 @@ export default [
                 format: "es",
                 exports: "named",
             },
+            {
+                file: "dist/types.d.ts",
+                format: "es",
+            },
         ],
         plugins: [
             external(),
@@ -54,6 +58,6 @@ export default [
                 format: "es",
             },
         ],
-        plugins: [dts],
+        plugins: [dts()],
     },
 ];

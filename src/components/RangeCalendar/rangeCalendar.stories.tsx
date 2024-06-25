@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/addon-docs/blocks";
+import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import { RangeCalendar } from "@/components";
