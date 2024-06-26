@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { CURRENT_DATE } from "@/constants/currentDate";
 import { calculateFirstDay, calculateStartDayOfWeek } from "@/helpers";
 import {
@@ -12,7 +10,7 @@ import { ICalendarBodyProps } from "./calendarBody.interface";
 
 import "./styles.scss";
 
-export const CalendarBody: FC = ({
+export const CalendarBody = ({
     currentDate = CURRENT_DATE,
     renderDayButton,
     startDayOfWeek,

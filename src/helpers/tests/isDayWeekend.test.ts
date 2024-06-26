@@ -1,4 +1,4 @@
-import { isDayWeekendDay } from "@/helpers";
+import { isDayWeekendDay } from "@/helpers/comparer";
 
 describe("isDayWeekendDay", () => {
     it("should return false if the given date is not a weekend day (Monday to Friday)", () => {

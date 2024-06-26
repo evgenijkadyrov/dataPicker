@@ -1,6 +1,9 @@
 import { IDate, ISelectedDate } from "@/interfaces";
 
-export const compareDate = (date1: IDate, date2: ISelectedDate | undefined): boolean => {
+export const compareDate = (
+    date1: IDate | undefined,
+    date2: ISelectedDate | undefined
+): boolean => {
     if (!date1 || !date2) {
         return false;
     }

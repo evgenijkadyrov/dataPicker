@@ -1,4 +1,4 @@
-import { getNextMonthAndYear, getPreviousMonthAndYear } from "@/helpers";
+import { getNextMonthAndYear, getPreviousMonthAndYear } from "@/helpers/calculate";
 
 describe("getNextMonthAndYear", () => {
     it("should return the next month and year when the current month is not the last month in the year", () => {
