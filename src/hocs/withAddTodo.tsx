@@ -11,8 +11,7 @@ import {
 
 import { TodoListBlock } from "@/components";
 import { CURRENT_DATE } from "@/constants";
-import { getDataFromStorage } from "@/helpers";
-import { compareDateForTodo } from "@/helpers/comparer/compareDateForTodo";
+import { compareDateForTodo, getDataFromStorage } from "@/helpers";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 
 export function withAddTodolist<T>(

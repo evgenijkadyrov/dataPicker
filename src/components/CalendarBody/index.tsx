@@ -1,9 +1,10 @@
-import { CURRENT_DATE } from "@/constants/currentDate";
-import { calculateFirstDay, calculateStartDayOfWeek } from "@/helpers";
+import { CURRENT_DATE } from "@/constants";
 import {
+    calculateFirstDay,
+    calculateStartDayOfWeek,
     getNextMonthAndYear,
     getPreviousMonthAndYear,
-} from "@/helpers/calculate/calculateNextPreviosPeriod";
+} from "@/helpers";
 import { IDate } from "@/interfaces";
 
 import { ICalendarBodyProps } from "./calendarBody.interface";

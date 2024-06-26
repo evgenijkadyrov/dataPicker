@@ -2,7 +2,7 @@ import { memo } from "react";
 
 import { TodoList } from "@/components";
 import { CURRENT_DATE } from "@/constants";
-import { compareDateForTodo } from "@/helpers/comparer/compareDateForTodo";
+import { compareDateForTodo } from "@/helpers";
 
 import { IProps } from "./todoListContainer.interfaces";
 

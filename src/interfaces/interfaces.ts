@@ -18,6 +18,7 @@ export interface IMinMaxDate {
 }
 
 export type Field = "month" | "year";
+
 export const initialSelectedDate: ISelectedDate = {
     month: undefined,
     year: undefined,
