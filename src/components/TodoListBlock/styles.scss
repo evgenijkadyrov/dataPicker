@@ -1,13 +1,17 @@
+@import "@/styles/styles.scss";
+$padding-s: 2px;
+$padding-l: 4px;
+
 .input {
     width: 100%;
-    padding: 2px 4px;
+    padding: $padding-s $padding-l;
     font: inherit;
     outline: none;
 }
 .addTodo {
-    height: 32px;
-    width: 32px;
+    height: $height-day-s;
+    width: $width-day-s;
     border-radius: 50%;
-    color: black;
-    background: rgb(241, 241, 241);
+    color: $black;
+    background: $background-light;
 }

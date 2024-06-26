@@ -1,6 +1,8 @@
 import { memo } from "react";
 
 import { TodoList } from "@/components";
+import { CURRENT_DATE } from "@/constants";
+import { compareDateForTodo } from "@/helpers/comparer/compareDateForTodo";
 
 import { IProps } from "./todoListContainer.interfaces";
 
@@ -32,6 +34,9 @@ export const TodoListBlock = memo<IProps>(
                     placeholder="Create a new todo..."
                     onKeyDown={handleAddNewTodo}
                 />
+            )}
+            {!compareDateForTodo(CURRENT_DATE, selectedDate) && (
+                <div>Can not create task for past period</div>
             )}
             <TodoList
                 todoList={todoList}
