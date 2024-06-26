@@ -3,11 +3,12 @@ import { Dispatch, ReactElement, SetStateAction, SyntheticEvent } from "react";
 import { IHolidayDate, StartDayOfWeek } from "@/constants/constants";
 import { IDate, IMinMaxDate, ISelectedDate } from "@/interfaces/interfaces";
 
+export type IColors = "success" | "primary" | "default";
 export interface ICalendarProps {
-    shownDate: IDate;
-    selectedDate: ISelectedDate;
-    maxDate: IMinMaxDate;
-    minDate: IMinMaxDate;
+    shownDate?: IDate;
+    selectedDate?: ISelectedDate;
+    maxDate?: IMinMaxDate | undefined;
+    minDate?: IMinMaxDate | undefined;
     startDayOfWeek?: StartDayOfWeek | undefined;
     renderPicker?: () => ReactElement;
     renderTodolist?: () => ReactElement;
@@ -20,4 +21,5 @@ export interface ICalendarProps {
     setShownDate?: Dispatch<SetStateAction<IDate>>;
     startDate?: ISelectedDate;
     endDate?: ISelectedDate;
+    color?: IColors | undefined;
 }

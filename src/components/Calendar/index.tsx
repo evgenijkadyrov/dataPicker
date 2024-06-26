@@ -38,34 +38,31 @@ export const Calendar = ({
     startDate,
     endDate,
     renderClear,
+    color = "default",
 }: ICalendarProps) => {
     const { showPreviousMonth, showNextMonth, handleChangeDate } =
         useControlMonth(setShownDate);
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
-        const isWeekendDay = showWeekends && isDayWeekendDay(date);
-        const isSelected = compareDate(date, selectedDate);
-        const isHoliday = showHolidays && isDayHoliday(date, holidays);
-        const isHaveTodo = showDaysWithTask && isDayHaveTodo(date);
-        const isStartDate = compareDate(date, startDate);
-        const isEndDate = compareDate(date, endDate);
-        const isRange = isDateInRange(date, startDate, endDate);
-
+        const componentClasses = classNames("day", "button", {
+            "day-disabled": !isCurrentMonth,
+            "day-selected": compareDate(date, selectedDate),
+            "day-holiday": showHolidays && isDayHoliday(date, holidays),
+            "day-weekend": showWeekends && isDayWeekendDay(date),
+            "day-withTask": showDaysWithTask && isDayHaveTodo(date),
+            "day-start": compareDate(date, startDate),
+            "day-end": compareDate(date, endDate),
+            "day-range": isDateInRange(date, startDate, endDate),
+            "day-primary": color === "primary",
+            "day-success": color === "success",
+            "day-default": color === "default",
+        });
         const { month, day } = date;
         return (
             <button
                 type="button"
                 key={`${month}-${day}`}
-                className={classNames("day", "button", {
-                    "day-disabled": !isCurrentMonth,
-                    selected: isSelected,
-                    isHoliday,
-                    isWeekendDay,
-                    isHaveTodo,
-                    isStartDate,
-                    isEndDate,
-                    isRange,
-                })}
+                className={componentClasses}
                 onClick={handleDayClick}>
                 {day}
             </button>
