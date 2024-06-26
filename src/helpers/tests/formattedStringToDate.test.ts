@@ -1,5 +1,5 @@
 import { CURRENT_DATE } from "@/constants";
-import { formatStringToDate } from "@/helpers";
+import { formatStringToDate } from "@/helpers/formatter";
 
 describe("formatStringToDate", () => {
     it("should return CURRENT_DATE if the input string does not have the correct format", () => {

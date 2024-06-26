@@ -1,4 +1,4 @@
-import { getTodosFromStorage } from "@/helpers";
+import { getDataFromStorage } from "@/helpers/calculate";
 
 describe("getTodosFromStorage", () => {
     beforeEach(() => {
@@ -12,7 +12,7 @@ describe("getTodosFromStorage", () => {
         ];
         localStorage.setItem("todoList", JSON.stringify(todos));
 
-        const result = getTodosFromStorage();
+        const result = getDataFromStorage();
         expect(result).toEqual(todos);
     });
 });

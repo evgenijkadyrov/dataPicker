@@ -1,5 +1,5 @@
 import { StartDayOfWeek } from "@/constants";
-import { calculateStartDayOfWeek } from "@/helpers";
+import { calculateStartDayOfWeek } from "@/helpers/calculate";
 
 describe("getStartDayOfWeek", () => {
     it("should return the default array of short day names if startDayOfWeek is not Monday", () => {

@@ -1,4 +1,4 @@
-import { isDateInRange } from "@/helpers";
+import { isDateInRange } from "@/helpers/calculate";
 
 describe("isDateInRange", () => {
     it("should return false if any of the required parameters is missing", () => {

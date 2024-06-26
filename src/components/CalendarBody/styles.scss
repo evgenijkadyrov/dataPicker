@@ -25,7 +25,6 @@
     height: $height-day-s;
     align-items: center;
     flex-basis: calc(100% / 7);
-    color: $dark-grey;
     font-family:
         Open Sans,
         serif;
@@ -34,6 +33,18 @@
     line-height: $font-size-xl;
     letter-spacing: 0;
     cursor: pointer;
+
+    &-default {
+        color: $dark-grey;
+    }
+
+    &-success {
+        color: $green;
+    }
+
+    &-primary {
+        color: $blue;
+    }
 }
 
 .month_body {
@@ -45,15 +56,34 @@
 .day-disabled {
     color: $day-disabled;
 }
-.selected {
+
+.day-selected {
+    border-radius: $border-radius-l;
+    background: $background-blue;
     color: $white;
 }
-.red {
+
+.day-weekend,
+.day-holiday {
     color: $day-red;
 }
-.isWeekendDay {
-    color: $day-red;
+
+.day-withTask {
+    border: $border-s solid $background-blue;
+    border-radius: $border-radius-l;
 }
-.isHoliday {
-    color: $day-red;
+
+.day-start {
+    border-radius: $border-radius-l 0 0 $border-radius-l;
+    background: $day-start;
+}
+
+.day-end {
+    border-radius: 0 $border-radius-l $border-radius-l 0;
+    background: $day-end;
+}
+
+.day-range {
+    background: $day-in-range;
+    color: $blue;
 }

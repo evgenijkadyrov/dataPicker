@@ -33,7 +33,7 @@ The DatePicker component allows users to select a single date from a calendar vi
 -   `startDayOfWeek` (`"Monday"` or `"Sunday"`, default: `"Monday"`): Specifies the start day of the week.
 -   `minDate` (`{year: number, month: number}`, default: `{year: 2010, month: 1}`): Sets the minimum selectable date on the calendar.
 -   `maxDate` (`{year: number, month: number}`, default: `{year: 2030, month: 12}`): Sets the maximum selectable date on the calendar.
--   `color` (string, default: `"blue"`): Specifies the color used for highlighting days.
+-   `color` ("default", "primary", "success", default: `"default"`): Specifies the color used for days.
 
 Example usage:
 
@@ -43,7 +43,7 @@ Example usage:
     startDayOfWeek={"Sunday"}
     minDate={{ year: 2010, month: 1 }}
     maxDate={{ year: 2030, month: 12 }}
-    color="#8a0000"
+    color="primary"
 />
 ```
 
@@ -58,7 +58,7 @@ The RangePicker component allows users to select a range of dates from a calenda
 -   `startDayOfWeek` (`"Monday"` or `"Sunday"`, default: `"Monday"`): Specifies the start day of the week.
 -   `minDate` (`{year: number, month: number}`, default: `{year: 2010, month: 1}`): Sets the minimum selectable date on the calendar.
 -   `maxDate` (`{year: number, month: number}`, default: `{year: 2030, month: 12}`): Sets the maximum selectable date on the calendar.
--   `color` (string, default: `"blue"`): Specifies the color used for highlighting days.
+-   `color` ("default", "primary", "success", default: `"default"`): Specifies the color used for days.
 
     Example usage:
 
@@ -68,7 +68,7 @@ The RangePicker component allows users to select a range of dates from a calenda
     startDayOfWeek={"Sunday"}
     minDate={{ year: 2010, month: 1 }}
     maxDate={{ year: 2030, month: 12 }}
-    color="#8a0000"
+    color="success"
 />
 ```
 
@@ -84,7 +84,7 @@ The CalendarTodo component allows users to add tasks for selected dates. It prov
 -   `minDate` (`{year: number, month: number}`, default: `{year: 2010, month: 1}`): Sets the minimum selectable date on the calendar.
 -   `maxDate` (`{year: number, month: number}`, default: `{year: 2030, month: 12}`): Sets the maximum selectable date on the calendar.
 -   `showDaysWithTask` (boolean, default: `true`): Determines whether days with tasks are highlighted on the calendar.
--   `color` (string, default: `"blue"`): Specifies the color used for highlighting days.
+-   `color` ("default", "primary", "success", default: `"default"`): Specifies the color used for days.
 
 Example usage:
 
@@ -95,7 +95,7 @@ Example usage:
     minDate={{ year: 2008, month: 5 }}
     maxDate={{ year: 2028, month: 5 }}
     showDaysWithTask={false}
-    color="#8a0000"
+    color="default"
 />
 ```
 

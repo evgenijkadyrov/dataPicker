@@ -3,3 +3,4 @@ export * from "./calculateNextPreviosPeriod";
 export * from "./calculateRangeDay";
 export * from "./calculateStartDayOfWeek";
 export * from "./generateRangeOfYearForSelect";
+export * from "./getDataFromStorage";

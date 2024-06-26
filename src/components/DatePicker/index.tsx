@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from "react";
 
-import { Calendar } from "@/components";
+import { Calendar, CalendarTodo, RangeCalendar } from "@/components";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { StartDayOfWeek } from "@/constants";
 import { withHolidays, withPickerLogic } from "@/hocs/";
@@ -46,6 +46,8 @@ export const DatePicker = memo<IProps>(
                     showWeekends={showWeekends}
                     shownDate={shownDate}
                 />
+                <CalendarTodo color="primary" />
+                <RangeCalendar color="success" />
             </ErrorBoundary>
         );
     }

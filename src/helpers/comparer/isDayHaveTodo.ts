@@ -1,8 +1,8 @@
-import { getTodosFromStorage } from "@/helpers";
+import { getDataFromStorage } from "@/helpers/calculate";
 import { ISelectedDate } from "@/interfaces";
 
 export const isDayHaveTodo = (date: ISelectedDate): boolean => {
-    const todolist = getTodosFromStorage();
+    const todolist = getDataFromStorage();
 
     if (todolist) {
         return todolist.some(
