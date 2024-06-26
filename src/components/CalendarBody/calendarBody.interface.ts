@@ -4,7 +4,7 @@ import { StartDayOfWeek } from "@/constants";
 import { IDate } from "@/interfaces";
 
 export interface ICalendarBodyProps {
-    currentDate: IDate;
+    currentDate: IDate | undefined;
     renderDayButton: (date: IDate, isCurrentMonth: boolean) => ReactElement;
-    startDayOfWeek: StartDayOfWeek;
+    startDayOfWeek: StartDayOfWeek | undefined;
 }

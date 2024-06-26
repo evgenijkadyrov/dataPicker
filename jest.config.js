@@ -14,7 +14,10 @@ const config = {
         "^@/components": "<rootDir>/src/components/",
         "^@/components/Icons": "<rootDir>/src/components/Icons/",
         "^@/constants": "<rootDir>/src/constants/",
-        "^@/helpers": "<rootDir>/src/helpers/",
+
+        "^@/helpers/calculate": "<rootDir>/src/helpers/calculate",
+        "^@/helpers/comparer": "<rootDir>/src/helpers/comparer",
+        "^@/helpers/formatter": "<rootDir>/src/helpers/formatter",
         "^@/globals": "<rootDir>/src/globals/",
         "^@/hocs": "<rootDir>/src/hocs/",
         "^@/interfaces": "<rootDir>/src/interfaces/",

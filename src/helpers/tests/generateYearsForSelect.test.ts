@@ -1,4 +1,4 @@
-import { generateRangeOfYearForSelect } from "@/helpers";
+import { generateRangeOfYearForSelect } from "@/helpers/calculate";
 
 describe("generateRangeOfYearForSelect", () => {
     it("should generate the correct range of years when currentYear is in the middle of minDate and maxDate", () => {

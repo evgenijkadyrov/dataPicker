@@ -1,27 +1,24 @@
-import { compareDate } from "@/helpers";
+import { equalDate } from "@/helpers/comparer";
+import { IDate, IMinMaxDate } from "@/interfaces";
 
-describe("compareDate", () => {
-    it("should return false if any of the required parameters is missing", () => {
-        const date1 = { year: 2024, month: 6, day: 21 };
-        const missingDate2 = undefined;
+describe("equalDate", () => {
+    const minMaxDate: IMinMaxDate = { year: 2022, month: 10 };
+    const date: IDate = { year: 2022, month: 10, day: 11 };
 
-        const result1 = compareDate(date1, missingDate2);
-        expect(result1).toBe(false);
+    it("should return true when both dates are defined and their month and year are equal", () => {
+        expect(equalDate(minMaxDate, date)).toBe(true);
     });
 
-    it("should return true if the dates are equal", () => {
-        const date1 = { year: 2024, month: 4, day: 24 };
-        const date2 = { year: 2024, month: 4, day: 24 };
-
-        const result = compareDate(date1, date2);
-        expect(result).toBe(true);
+    it("should return false when either date is undefined", () => {
+        expect(equalDate(undefined, date)).toBe(false);
+        expect(equalDate(minMaxDate, undefined)).toBe(false);
     });
 
-    it("should return false if the dates are not equal", () => {
-        const date1 = { year: 2024, month: 6, day: 24 };
-        const date2 = { year: 2024, month: 6, day: 25 };
+    it("should return false when the month or year of the dates is not equal", () => {
+        const differentMonthDate: IDate = { year: 2022, month: 11, day: 11 };
+        const differentYearDate: IDate = { year: 2023, month: 10, day: 11 };
 
-        const result = compareDate(date1, date2);
-        expect(result).toBe(false);
+        expect(equalDate(minMaxDate, differentMonthDate)).toBe(false);
+        expect(equalDate(differentYearDate, date)).toBe(false);
     });
 });

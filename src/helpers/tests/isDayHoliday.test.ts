@@ -1,4 +1,4 @@
-import { isDayHoliday } from "@/helpers";
+import { isDayHoliday } from "@/helpers/comparer";
 
 describe("isDayHoliday", () => {
     it("should return false if holidays array is undefined", () => {

@@ -1,7 +1,7 @@
 import { StartDayOfWeek } from "@/constants";
 
 export const calculateFirstDay = (
-    startDayOfWeek: StartDayOfWeek,
+    startDayOfWeek: StartDayOfWeek | undefined,
     year: number,
     month: number
 ): number => {

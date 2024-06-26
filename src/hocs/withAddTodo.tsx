@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { TodoListBlock } from "@/components";
-import { getTodosFromStorage } from "@/helpers";
+import { getDataFromStorage } from "@/helpers";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 
 export function withAddTodolist<T>(
@@ -27,7 +27,7 @@ export function withAddTodolist<T>(
         >
     ) => {
         const [todo, setTodo] = useState<string>("");
-        const [todoList, setTodoList] = useState<ITodo[]>(() => getTodosFromStorage());
+        const [todoList, setTodoList] = useState<ITodo[]>(() => getDataFromStorage());
         const [isAddTodo, setIsAddTodo] = useState(false);
         useEffect(() => {
             localStorage.setItem("todoList", JSON.stringify(todoList));

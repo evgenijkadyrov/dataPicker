@@ -1,4 +1,4 @@
-import { compareDate } from "@/helpers";
+import { compareDate } from "@/helpers/comparer";
 
 describe("compareDate", () => {
     it("should return false if any of the required parameters is missing", () => {

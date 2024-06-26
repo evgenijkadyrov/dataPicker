@@ -1,4 +1,4 @@
-import { formatDateToString } from "@/helpers";
+import { formatDateToString } from "@/helpers/formatter";
 
 describe("formatDateToString", () => {
     it("should return an empty string if any of the required parameters is missing", () => {
