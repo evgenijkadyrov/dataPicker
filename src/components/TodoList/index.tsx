@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useRef } from "react";
 
 import { ClearIcon } from "@/components/Icons";
 import { compareDate } from "@/helpers";
@@ -13,8 +13,11 @@ export const TodoList = memo(
         const filteredTodoList = todoList.filter((item) =>
             compareDate(item.date as IDate, selectedDate)
         );
+
+        const listRef = useRef<HTMLUListElement | null>(null);
+
         return (
-            <ul>
+            <ul ref={listRef} className={filteredTodoList.length > 3 ? "scrollable" : ""}>
                 {filteredTodoList.map(({ id, content, status }) => (
                     <li key={id}>
                         <input

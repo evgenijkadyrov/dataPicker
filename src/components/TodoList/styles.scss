@@ -1,4 +1,5 @@
 @import "@/styles/styles.scss";
+$height-todolists: 75px;
 ul {
     width: $width-m;
     display: flex;
@@ -14,6 +15,7 @@ li {
     align-items: center;
     justify-content: flex-start;
     gap: $size-s;
+    height: $height-s;
 }
 button {
     margin-top: $size-s;
@@ -21,4 +23,8 @@ button {
     outline: none;
     background: transparent;
     cursor: pointer;
+}
+.scrollable {
+    max-height: $height-todolists;
+    overflow-y: auto;
 }

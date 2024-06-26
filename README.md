@@ -1,6 +1,6 @@
 # Datepicker
 
-The Datepicker project provides a set of components for selecting and managing dates in UI applications. It includes three main components: DatePicker, RangePicker, and CalendarTodo.
+The Datepicker project provides a set of components for selecting and managing dates in UI applications. It includes three main components: DatePicker, RangeCalendar, and CalendarTodo.
 
 ## Installation
 
@@ -19,7 +19,7 @@ npm install --save datepicker-front
 To use the Datepicker components in your application, import them as follows:
 
 ```sh
-import { DatePicker, CalendarTodo, RangePicker } from "datepicker_front";
+import { DatePicker, CalendarTodo, RangeCalendar } from "datepicker_front";
 ```
 
 ### DatePicker
@@ -47,9 +47,9 @@ Example usage:
 />
 ```
 
-### RangePicker
+### RangeCalendar
 
-The RangePicker component allows users to select a range of dates from a calendar view. It provides functionality for highlighting the start and end dates of the range, as well as a clear button to reset the selection.
+The RangeCalendar component allows users to select a range of dates from a calendar view. It provides functionality for highlighting the start and end dates of the range, as well as a clear button to reset the selection.
 
 **Props:**
 
@@ -63,7 +63,7 @@ The RangePicker component allows users to select a range of dates from a calenda
     Example usage:
 
 ```jsx
-<RangePicker
+<RangeCalendar
     showHolidays={false}
     startDayOfWeek={"Sunday"}
     minDate={{ year: 2010, month: 1 }}

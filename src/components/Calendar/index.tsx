@@ -45,6 +45,9 @@ export const Calendar = ({
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
         const componentClasses = classNames("day", "button", {
+            "day-primary": color === "primary",
+            "day-success": color === "success",
+            "day-default": color === "default",
             "day-disabled": !isCurrentMonth,
             "day-selected": compareDate(date, selectedDate),
             "day-holiday": showHolidays && isDayHoliday(date, holidays),
@@ -53,9 +56,6 @@ export const Calendar = ({
             "day-start": compareDate(date, startDate),
             "day-end": compareDate(date, endDate),
             "day-range": isDateInRange(date, startDate, endDate),
-            "day-primary": color === "primary",
-            "day-success": color === "success",
-            "day-default": color === "default",
         });
         const { month, day } = date;
         return (

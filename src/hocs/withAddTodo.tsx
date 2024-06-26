@@ -10,7 +10,9 @@ import {
 } from "react";
 
 import { TodoListBlock } from "@/components";
+import { CURRENT_DATE } from "@/constants";
 import { getDataFromStorage } from "@/helpers";
+import { compareDateForTodo } from "@/helpers/comparer/compareDateForTodo";
 import { IDate, ISelectedDate, ITodo } from "@/interfaces";
 
 export function withAddTodolist<T>(
@@ -29,6 +31,7 @@ export function withAddTodolist<T>(
         const [todo, setTodo] = useState<string>("");
         const [todoList, setTodoList] = useState<ITodo[]>(() => getDataFromStorage());
         const [isAddTodo, setIsAddTodo] = useState(false);
+
         useEffect(() => {
             localStorage.setItem("todoList", JSON.stringify(todoList));
         }, [todoList]);
@@ -63,14 +66,15 @@ export function withAddTodolist<T>(
             setTodoList(copy);
         };
         const handleClickAddButton = () => {
-            setIsAddTodo(true);
+            setIsAddTodo(compareDateForTodo(CURRENT_DATE, selectedDate));
         };
         const handleDayClick = (e: SyntheticEvent): void => {
             const target = e.target as HTMLElement;
+            const day = parseInt(target.innerText, 10);
             setSelectedDate({
                 year: shownDate?.year,
                 month: shownDate?.month,
-                day: parseInt(target.innerText, 10),
+                day,
             } as ISelectedDate);
         };
         const renderTodolist = (): ReactElement => (

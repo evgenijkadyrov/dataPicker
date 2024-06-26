@@ -32,8 +32,11 @@ export function withPickerLogic<T>(
 
         const handleInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
-
-            setDateString(target.value);
+            const formattedValue = target.value.replace(
+                /(\d{4})(\d{2})(\d{2})/,
+                "$1-$2-$3"
+            );
+            setDateString(formattedValue);
         };
 
         const handleEnterDate = (e: KeyboardEvent<HTMLInputElement>): void => {
