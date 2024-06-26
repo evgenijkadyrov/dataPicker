@@ -26,7 +26,7 @@ export const CalendarHeader = ({
             <div className="date-title">
                 <select
                     className="select_month"
-                    value={currentDate.month}
+                    value={currentDate?.month}
                     onChange={(e) => handleChangeDate(e, "month")}>
                     {MONTH_NAMES.map((monthItem, index) => (
                         <option key={monthItem} value={index} className="month_text">
@@ -36,7 +36,7 @@ export const CalendarHeader = ({
                 </select>
                 <select
                     className="select_month"
-                    value={currentDate.year}
+                    value={currentDate?.year}
                     onChange={(e) => handleChangeDate(e, "year")}>
                     {generateRangeOfYearForSelect(
                         CURRENT_DATE.year,

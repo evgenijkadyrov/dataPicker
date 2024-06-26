@@ -12,6 +12,7 @@ export const CalendarTodo = memo<ICalendarProps>(
         startDayOfWeek = StartDayOfWeek.Monday,
         maxDate,
         minDate,
+        color,
         showHolidays = true,
         showWeekends = true,
         showDaysWithTask = true,
@@ -34,6 +35,7 @@ export const CalendarTodo = memo<ICalendarProps>(
                     startDayOfWeek={startDayOfWeek}
                     maxDate={maxDate}
                     minDate={minDate}
+                    color={color}
                     showHolidays={showHolidays}
                     showWeekends={showWeekends}
                     showDaysWithTask={showDaysWithTask}
