@@ -7,7 +7,6 @@ export const compareDateForTodo = (
     if (!date1 || !date2) {
         return false;
     }
-
     const date1Ms = new Date(date1.year, date1.month, date1.day).getTime();
     let date2Ms = 0;
     if (

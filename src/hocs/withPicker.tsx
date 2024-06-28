@@ -13,6 +13,8 @@ import { CURRENT_DATE } from "@/constants";
 import { formatDateToString, formatStringToDate, isValidDate } from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
 
+import "@/components/Picker/styles.scss";
+
 export function withPickerLogic<T>(
     Component: ComponentType<T>,
     selectedDate: ISelectedDate,
@@ -29,6 +31,7 @@ export function withPickerLogic<T>(
         const [dateString, setDateString] = useState<string>(
             formatDateToString(selectedDate)
         );
+        const [error, setError] = useState("");
 
         const handleInputChange = (e: SyntheticEvent): void => {
             const target = e.target as HTMLInputElement;
@@ -50,11 +53,13 @@ export function withPickerLogic<T>(
             const date: IDate | undefined = formatStringToDate(dateString);
 
             if (!isValidDate(date) || !date) {
+                setError("Date is not valid. Please enter date in correct format.");
                 return;
             }
 
             setShownDate(date);
             setSelectedDate(date as ISelectedDate);
+            setError("");
         };
 
         const handleClearDate = (): void => {
@@ -75,12 +80,15 @@ export function withPickerLogic<T>(
         };
 
         const renderPicker = (): ReactElement => (
-            <Picker
-                value={dateString}
-                onChange={handleInputChange}
-                onKeyDown={handleEnterDate}
-                onClick={handleClearDate}
-            />
+            <>
+                <Picker
+                    value={dateString}
+                    onChange={handleInputChange}
+                    onKeyDown={handleEnterDate}
+                    onClick={handleClearDate}
+                />
+                {error && <span className="error">{error}</span>}
+            </>
         );
 
         return (
