@@ -19,3 +19,5 @@ export const getPreviousMonthAndYear = (
 
     return { prevMonth, prevYear };
 };
+export const getDaysInMonth = (year: number, month: number): number =>
+    new Date(year, month + 1, 0).getDate();

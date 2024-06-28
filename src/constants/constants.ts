@@ -49,3 +49,4 @@ export const LAST_MONTH_IN_YEAR = 11;
 export const FIRST_MONTH_IN_YEAR = 0;
 
 export const FIRST_DAY_IN_MONTH = 1;
+export const WEEK_LENGTH = 7;

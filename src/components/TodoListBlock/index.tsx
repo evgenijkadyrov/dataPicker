@@ -22,7 +22,11 @@ export const TodoListBlock = memo<IProps>(
     }) => (
         <>
             {!isAddTodo ? (
-                <button onClick={handleClickAddButton} className="addTodo" type="button">
+                <button
+                    onClick={handleClickAddButton}
+                    className="addTodo"
+                    type="button"
+                    disabled={!compareDateForTodo(CURRENT_DATE, selectedDate)}>
                     +
                 </button>
             ) : (
@@ -36,7 +40,9 @@ export const TodoListBlock = memo<IProps>(
                 />
             )}
             {!compareDateForTodo(CURRENT_DATE, selectedDate) && (
-                <div>Can not create task for past period</div>
+                <div className="error">
+                    Can not create task for past period. Please select another day.
+                </div>
             )}
             <TodoList
                 todoList={todoList}
