@@ -1,6 +1,7 @@
 import { memo, useRef } from "react";
 
 import { ClearIcon } from "@/components/Icons";
+import { NumberOfVisibleTodolists } from "@/constants";
 import { compareDate } from "@/helpers";
 import { IDate } from "@/interfaces";
 
@@ -15,14 +16,20 @@ export const TodoList = memo(
         );
 
         const listRef = useRef<HTMLUListElement | null>(null);
-
+        const handleChange = (id: number) => () => {
+            handleChangeStatus(id);
+        };
         return (
-            <ul ref={listRef} className={filteredTodoList.length > 3 ? "scrollable" : ""}>
+            <ul
+                ref={listRef}
+                className={
+                    filteredTodoList.length > NumberOfVisibleTodolists ? "scrollable" : ""
+                }>
                 {filteredTodoList.map(({ id, content, status }) => (
                     <li key={id}>
                         <input
                             type="checkbox"
-                            onChange={() => handleChangeStatus(id)}
+                            onChange={handleChange(id)}
                             checked={status}
                         />
                         <p>{content}</p>

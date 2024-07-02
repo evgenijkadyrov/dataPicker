@@ -2,14 +2,9 @@ import { memo, useMemo, useState } from "react";
 
 import { Calendar } from "@/components";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { StartDayOfWeek } from "@/constants";
+import { initialSelectedDate, initialShownDate, StartDayOfWeek } from "@/constants";
 import { withHolidays, withPickerLogic } from "@/hocs/";
-import {
-    IDate,
-    initialSelectedDate,
-    initialShownDate,
-    ISelectedDate,
-} from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 import { IProps } from "./datePicker.interfaces";
 

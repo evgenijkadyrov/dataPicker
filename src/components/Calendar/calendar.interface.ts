@@ -3,7 +3,10 @@ import { Dispatch, ReactElement, SetStateAction, SyntheticEvent } from "react";
 import { IHolidayDate, StartDayOfWeek } from "@/constants/constants";
 import { IDate, IMinMaxDate, ISelectedDate } from "@/interfaces/interfaces";
 
-export type IColors = "success" | "primary" | "default";
+export interface IColors {
+    color: "success" | "primary" | "default";
+}
+
 export interface ICalendarProps {
     shownDate?: IDate;
     selectedDate?: ISelectedDate;
@@ -21,5 +24,5 @@ export interface ICalendarProps {
     setShownDate?: Dispatch<SetStateAction<IDate>>;
     startDate?: ISelectedDate;
     endDate?: ISelectedDate;
-    color?: IColors | undefined;
+    color?: IColors;
 }

@@ -1,4 +1,5 @@
-import { IMinMaxDate } from "@/interfaces";
+import { CURRENT_DATE } from "@/constants/currentDate";
+import { IDate, IMinMaxDate, ISelectedDate } from "@/interfaces";
 
 export const MONTH_NAMES = [
     "January",
@@ -21,11 +22,6 @@ export enum StartDayOfWeek {
 }
 
 export const SHORT_DAY_NAMES = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-
-export const numbersArray: number[] = [];
-for (let i = 1; i <= 30; i += 1) {
-    numbersArray.push(i);
-}
 
 export interface IHolidayDate {
     month: number;
@@ -50,3 +46,13 @@ export const FIRST_MONTH_IN_YEAR = 0;
 
 export const FIRST_DAY_IN_MONTH = 1;
 export const WEEK_LENGTH = 7;
+
+export const NumberOfVisibleTodolists = 3;
+export const initialSelectedDate: ISelectedDate = {
+    month: undefined,
+    year: undefined,
+    day: undefined,
+};
+export const initialShownDate: IDate = {
+    ...CURRENT_DATE,
+};

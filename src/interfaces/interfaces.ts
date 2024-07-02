@@ -1,5 +1,3 @@
-import { CURRENT_DATE } from "@/constants";
-
 export interface IDate {
     day: number;
     month: number;
@@ -18,15 +16,6 @@ export interface IMinMaxDate {
 }
 
 export type Field = "month" | "year";
-
-export const initialSelectedDate: ISelectedDate = {
-    month: undefined,
-    year: undefined,
-    day: undefined,
-};
-export const initialShownDate: IDate = {
-    ...CURRENT_DATE,
-};
 
 export interface ITodo {
     id: number;

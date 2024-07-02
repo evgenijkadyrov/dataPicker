@@ -1,5 +1,3 @@
-import classNames from "classnames";
-
 import { CalendarBody, CalendarHeader } from "@/components";
 import {
     CURRENT_DATE,
@@ -7,13 +5,7 @@ import {
     DEFAULT_MIN_DATE,
     StartDayOfWeek,
 } from "@/constants";
-import {
-    compareDate,
-    isDateInRange,
-    isDayHaveTodo,
-    isDayHoliday,
-    isDayWeekendDay,
-} from "@/helpers";
+import { generateComponentClasses } from "@/helpers";
 import { useControlMonth } from "@/hooks/useControlMonth";
 import { IDate } from "@/interfaces";
 
@@ -44,18 +36,17 @@ export const Calendar = ({
         useControlMonth(setShownDate);
 
     const renderDayButton = (date: IDate, isCurrentMonth: boolean) => {
-        const componentClasses = classNames("day", "button", {
-            "day-primary": color === "primary",
-            "day-success": color === "success",
-            "day-default": color === "default",
-            "day-disabled": !isCurrentMonth,
-            "day-selected": compareDate(date, selectedDate),
-            "day-holiday": showHolidays && isDayHoliday(date, holidays),
-            "day-weekend": showWeekends && isDayWeekendDay(date),
-            "day-withTask": showDaysWithTask && isDayHaveTodo(date),
-            "day-start": compareDate(date, startDate),
-            "day-end": compareDate(date, endDate),
-            "day-range": isDateInRange(date, startDate, endDate),
+        const componentClasses = generateComponentClasses({
+            date,
+            isCurrentMonth,
+            color,
+            selectedDate,
+            showHolidays,
+            holidays,
+            showWeekends,
+            showDaysWithTask,
+            startDate,
+            endDate,
         });
         const { month, day } = date;
         return (

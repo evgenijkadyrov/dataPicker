@@ -3,9 +3,9 @@ import { memo, useMemo, useState } from "react";
 import { Calendar } from "@/components";
 import { ICalendarProps } from "@/components/Calendar/calendar.interface";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { StartDayOfWeek } from "@/constants";
+import { initialShownDate, StartDayOfWeek } from "@/constants";
 import { withAddTodolist, withHolidays } from "@/hocs";
-import { IDate, initialShownDate, ISelectedDate } from "@/interfaces";
+import { IDate, ISelectedDate } from "@/interfaces";
 
 export const CalendarTodo = memo<ICalendarProps>(
     ({
