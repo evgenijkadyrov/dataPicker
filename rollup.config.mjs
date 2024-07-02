@@ -7,6 +7,7 @@ import dts from "rollup-plugin-dts";
 import styles from "rollup-plugin-styles";
 import commonjs from "rollup-plugin-commonjs";
 import scss from "rollup-plugin-scss";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default [
     {
@@ -21,14 +22,11 @@ export default [
                 format: "es",
                 exports: "named",
             },
-            {
-                file: "dist/types.d.ts",
-                format: "es",
-            },
         ],
         plugins: [
+            nodeResolve(),
             external(),
-            scss({ output: "dist/styles.scss" }),
+            scss({ sourceMap: true, prefix: `src/styles/styles.scss` }),
             typescript({ tsconfig: "./tsconfig.json" }),
             babel({
                 exclude: "node_modules/**",
@@ -44,12 +42,12 @@ export default [
                 main: true,
                 browser: true,
             }),
-
             terser(),
             commonjs(),
             styles(),
         ],
     },
+
     {
         input: "./src/index.ts",
         output: [

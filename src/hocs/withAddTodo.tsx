@@ -28,7 +28,9 @@ export function withAddTodolist<T>(
         >
     ) => {
         const [todo, setTodo] = useState<string>("");
-        const [todoList, setTodoList] = useState<ITodo[]>(() => getDataFromStorage());
+        const [todoList, setTodoList] = useState<ITodo[] | []>(
+            () => getDataFromStorage() || []
+        );
         const [isAddTodo, setIsAddTodo] = useState(false);
 
         useEffect(() => {
