@@ -9,7 +9,7 @@ import {
 
 import { IDate, ISelectedDate } from "@/interfaces";
 
-import "@/components/RangeCalendar/styles.scss";
+import "./styles.scss";
 
 export function withRangeLogic<T>(
     Component: ComponentType<T>,

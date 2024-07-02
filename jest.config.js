@@ -18,11 +18,9 @@ const config = {
         "^@/helpers/calculate": "<rootDir>/src/helpers/calculate",
         "^@/helpers/comparer": "<rootDir>/src/helpers/comparer",
         "^@/helpers/formatter": "<rootDir>/src/helpers/formatter",
-        "^@/globals": "<rootDir>/src/globals/",
         "^@/hocs": "<rootDir>/src/hocs/",
         "^@/interfaces": "<rootDir>/src/interfaces/",
         "^@/styles/": "<rootDir>/src/styles/",
-        "^@/styles/global": "<rootDir>/src/styles/global",
         "\\.(jpe?g|png|gif|webp|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)$":
             "<rootDir>/tests/unit/fixtures/empty-string.js",
     },

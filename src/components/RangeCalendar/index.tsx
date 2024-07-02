@@ -8,8 +8,6 @@ import { IDate, ISelectedDate } from "@/interfaces";
 
 import { IProps } from "./rangeCalendar.interfaces";
 
-import "./styles.scss";
-
 export const RangeCalendar = memo<IProps>(
     ({
         startDayOfWeek = StartDayOfWeek.Monday,

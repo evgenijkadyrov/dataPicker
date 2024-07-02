@@ -1,4 +1,4 @@
-@import "@/styles/styles.scss";
+@import "../styles/styles.scss";
 
 .clearButton {
     width: 100%;
@@ -13,4 +13,8 @@
     &:hover {
         background-color: $background-light;
     }
+}
+.error {
+    color: $day-red;
+    font-size: $font-size-s;
 }

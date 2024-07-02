@@ -13,7 +13,7 @@ import { CURRENT_DATE } from "@/constants";
 import { formatDateToString, formatStringToDate, isValidDate } from "@/helpers";
 import { IDate, ISelectedDate } from "@/interfaces";
 
-import "@/components/Picker/styles.scss";
+import "./styles.scss";
 
 export function withPickerLogic<T>(
     Component: ComponentType<T>,

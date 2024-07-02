@@ -6,9 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
 import styles from "rollup-plugin-styles";
 import commonjs from "rollup-plugin-commonjs";
-import scss from "rollup-plugin-scss";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-
+import postcss from "rollup-plugin-postcss";
 export default [
     {
         input: "./src/index.ts",
@@ -16,18 +14,24 @@ export default [
             {
                 file: "dist/index.js",
                 format: "cjs",
+                sourcemap: true,
             },
             {
                 file: "dist/index.es.js",
                 format: "es",
                 exports: "named",
+                sourcemap: true,
             },
         ],
         plugins: [
-            nodeResolve(),
             external(),
-            scss({ sourceMap: true, prefix: `src/styles/styles.scss` }),
+            resolve(),
+            commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
+            postcss({
+                extract: true,
+            }),
+
             babel({
                 exclude: "node_modules/**",
                 presets: [
@@ -42,12 +46,12 @@ export default [
                 main: true,
                 browser: true,
             }),
-            terser(),
+
             commonjs(),
             styles(),
+            terser(),
         ],
     },
-
     {
         input: "./src/index.ts",
         output: [
@@ -56,6 +60,6 @@ export default [
                 format: "es",
             },
         ],
-        plugins: [dts()],
+        plugins: [dts],
     },
 ];

@@ -1,4 +1,4 @@
-@import "@/styles/styles.scss";
+@import "../../styles/styles.scss";
 
 $padding-two: 2px;
 $padding-bigger: 25px;
@@ -36,8 +36,4 @@ $padding-bigger: 25px;
     &:invalid {
         border-color: $day-red;
     }
-}
-.error {
-    color: $day-red;
-    font-size: $font-size-s;
 }
